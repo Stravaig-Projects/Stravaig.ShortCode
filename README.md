@@ -1,0 +1,1 @@
+# stravaig-template
