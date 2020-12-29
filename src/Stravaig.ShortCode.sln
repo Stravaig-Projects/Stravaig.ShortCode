@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stravaig.ShortCode", "Stravaig.ShortCode\Stravaig.ShortCode.csproj", "{ECD417AB-33E0-41E0-97DE-A4907A0798B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stravaig.ShortCode.Tests", "Stravaig.ShortCode.Tests\Stravaig.ShortCode.Tests.csproj", "{2F675E2C-415D-49C0-AAC0-2B90B2C65AE6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ECD417AB-33E0-41E0-97DE-A4907A0798B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECD417AB-33E0-41E0-97DE-A4907A0798B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECD417AB-33E0-41E0-97DE-A4907A0798B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECD417AB-33E0-41E0-97DE-A4907A0798B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F675E2C-415D-49C0-AAC0-2B90B2C65AE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F675E2C-415D-49C0-AAC0-2B90B2C65AE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F675E2C-415D-49C0-AAC0-2B90B2C65AE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F675E2C-415D-49C0-AAC0-2B90B2C65AE6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
