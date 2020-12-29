@@ -38,9 +38,9 @@ jobs:
     name: Build, Test, and Release
     runs-on: ubuntu-latest
     env:
-      STRAVAIG_SOLUTION: src/XXXX.sln
-      STRAVAIG_TESTS: XXXX.Tests
-      STRAVAIG_PROJECT: XXXX
+      STRAVAIG_SOLUTION: src/Stravaig.ShortCode.sln
+      STRAVAIG_TESTS: Stravaig.ShortCode.Tests
+      STRAVAIG_PROJECT: Stravaig.ShortCode
     
     steps:
       - name: Check out code
