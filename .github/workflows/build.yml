@@ -38,7 +38,7 @@ jobs:
     name: Build, Test, and Release
     runs-on: ubuntu-latest
     env:
-      STRAVAIG_SOLUTION: src/Stravaig.ShortCode.sln
+      STRAVAIG_SOLUTION: ./src/Stravaig.ShortCode.sln
       STRAVAIG_TESTS: Stravaig.ShortCode.Tests
       STRAVAIG_PROJECT: Stravaig.ShortCode
     
@@ -73,15 +73,15 @@ jobs:
         run: dotnet build $STRAVAIG_SOLUTION --configuration Release
        
       - name: Run Tests
-        run: dotnet test src/$STRAVAIG_TESTS/$STRAVAIG_TESTS.csproj --configuration Release
+        run: dotnet test src/$STRAVAIG_TESTS/$STRAVAIG_TESTS.csproj --configuration Release -filter TestCategory!=LongStressTest
        
       - name: Package Preview Release
         if: ${{ env.STRAVAIG_IS_PREVIEW == 'true' }}
-        run: dotnet pack ./src/$STRAVAIG_PROJECT/$STRAVAIG_PROJECT.csproj --configuration Release --output ./out --include-symbols --include-source /p:VersionPrefix="$STRAVAIG_PACKAGE_VERSION" --version-suffix "$STRAVAIG_PACKAGE_VERSION_SUFFIX" -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
+        run: dotnet pack $STRAVAIG_SOLUTION --configuration Release --output ./out --include-symbols --include-source /p:VersionPrefix="$STRAVAIG_PACKAGE_VERSION" --version-suffix "$STRAVAIG_PACKAGE_VERSION_SUFFIX" -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
        
       - name: Package Stable Release
         if: ${{ env.STRAVAIG_IS_STABLE == 'true' }}
-        run: dotnet pack ./src/$STRAVAIG_PROJECT/$STRAVAIG_PROJECT.csproj --configuration Release --output ./out --include-symbols --include-source /p:VersionPrefix="$STRAVAIG_PACKAGE_VERSION" -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
+        run: dotnet pack $STRAVAIG_SOLUTION --configuration Release --output ./out --include-symbols --include-source /p:VersionPrefix="$STRAVAIG_PACKAGE_VERSION" -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
 
       - name: Push package to NuGet
         if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
@@ -104,6 +104,7 @@ jobs:
             contributors.md
             release-notes/full-release-notes.md
             release-notes/release-notes-${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}.md
+            out/**
           retention-days: 7
 
       - name: Archive Release Notes
@@ -115,6 +116,7 @@ jobs:
             contributors.md
             release-notes/full-release-notes.md
             release-notes/release-notes-${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}.md
+            out/**
         
       - name: Mark Release
         if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}

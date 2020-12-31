@@ -13,6 +13,7 @@ namespace Stravaig.ShortCode.Tests
         }
 
         [Test]
+        [Category("LongStressTest")]
         public void MultiThreadStressTest()
         {
             var gen = new CryptographicallyRandomCodeGenerator();
