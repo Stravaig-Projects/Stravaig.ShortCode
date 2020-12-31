@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Stravaig.ShortCode
 {
@@ -18,6 +19,11 @@ namespace Stravaig.ShortCode
             _options = options ?? throw new ArgumentNullException(nameof(options));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             WarnOnInconsistentOptions();
+        }
+
+        public ShortCodeFactory(IShortCodeGenerator generator, IEncoder encoder, ShortCodeOptions options)
+            : this(generator, encoder, options, new NullLogger<ShortCodeFactory>())
+        {
         }
 
         private void WarnOnInconsistentOptions()
