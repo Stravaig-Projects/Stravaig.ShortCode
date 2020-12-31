@@ -73,7 +73,7 @@ jobs:
         run: dotnet build $STRAVAIG_SOLUTION --configuration Release
        
       - name: Run Tests
-        run: dotnet test src/$STRAVAIG_TESTS/$STRAVAIG_TESTS.csproj --configuration Release -filter TestCategory!=LongStressTest
+        run: dotnet test src/$STRAVAIG_TESTS/$STRAVAIG_TESTS.csproj --configuration Release --filter TestCategory!=LongStressTest
        
       - name: Package Preview Release
         if: ${{ env.STRAVAIG_IS_PREVIEW == 'true' }}
