@@ -2,6 +2,15 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
+        <Title>Stravaig Short Code</Title>
+        <Authors>Colin Angus Mackay</Authors>
+        <Description>Extensions for the Microsoft's Dependency Injection that injects an IShortCodeFactory into your application.</Description>
+        <Copyright>©2020 Colin Angus Mackay. See licence for more information.</Copyright>
+        <PackageProjectUrl>https://github.com/Stravaig-Projects/Stravaig.ShortCode/blob/main/README.md</PackageProjectUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <RepositoryUrl>https://github.com/Stravaig-Projects/Stravaig.ShortCode</RepositoryUrl>
+        <PackageIcon>stravaig-icon.png</PackageIcon>
+        <PackageTags>random short-code code</PackageTags>
     </PropertyGroup>
 
     <ItemGroup>
@@ -12,4 +21,7 @@
       <ProjectReference Include="..\Stravaig.ShortCode\Stravaig.ShortCode.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+        <None Include="stravaig-icon.png" Pack="true" PackagePath="" />
+    </ItemGroup>
 </Project>

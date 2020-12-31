@@ -1,4 +1,4 @@
-name: Stravaig Configuration Diagnostics
+name: Stravaig Short Code
 on: 
   push:
     branches: 
