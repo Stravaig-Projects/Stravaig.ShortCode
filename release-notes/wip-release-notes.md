@@ -4,9 +4,7 @@
 
 Date: ???
 
-### Bugs
-
 ### Features
 
-### Miscellaneous
+Initial Release
 
