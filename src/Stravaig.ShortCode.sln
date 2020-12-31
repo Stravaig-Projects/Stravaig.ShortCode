@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stravaig.ShortCode", "Strav
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stravaig.ShortCode.Tests", "Stravaig.ShortCode.Tests\Stravaig.ShortCode.Tests.csproj", "{2F675E2C-415D-49C0-AAC0-2B90B2C65AE6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stravaig.ShortCode.DependencyInjection", "Stravaig.ShortCode.DependencyInjection\Stravaig.ShortCode.DependencyInjection.csproj", "{75FB9F89-FE93-46C1-A93F-D6E284386863}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{2F675E2C-415D-49C0-AAC0-2B90B2C65AE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F675E2C-415D-49C0-AAC0-2B90B2C65AE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F675E2C-415D-49C0-AAC0-2B90B2C65AE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75FB9F89-FE93-46C1-A93F-D6E284386863}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75FB9F89-FE93-46C1-A93F-D6E284386863}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75FB9F89-FE93-46C1-A93F-D6E284386863}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75FB9F89-FE93-46C1-A93F-D6E284386863}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
