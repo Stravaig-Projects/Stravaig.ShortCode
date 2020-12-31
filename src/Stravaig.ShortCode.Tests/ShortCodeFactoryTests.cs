@@ -1,0 +1,107 @@
+using System;
+using System.Linq;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
+using Moq;
+using NUnit.Framework;
+using Shouldly;
+using Stravaig.Extensions.Logging.Diagnostics;
+
+namespace Stravaig.ShortCode.Tests
+{
+    [TestFixture]
+    public class ShortCodeFactoryTests
+    {
+        [Test]
+        public void Ctor_ThrowException_WhenMissingGenerator()
+        {
+            Should.Throw<ArgumentNullException>(() =>
+                new ShortCodeFactory(null, null, null, null))
+                .ParamName.ShouldBe("generator");
+        }
+        
+        [Test]
+        public void Ctor_ThrowException_WhenMissingEncoder()
+        {
+            Should.Throw<ArgumentNullException>(() =>
+                new ShortCodeFactory(new Mock<IShortCodeGenerator>().Object, null, null, null))
+                .ParamName.ShouldBe("encoder");
+        }
+
+        [Test]
+        public void Ctor_ThrowException_WhenMissingOptions()
+        {
+            Should.Throw<ArgumentNullException>(() =>
+                new ShortCodeFactory(new Mock<IShortCodeGenerator>().Object, new Mock<IEncoder>().Object, null, null))
+                .ParamName.ShouldBe("options");
+        }
+
+        [Test]
+        public void Ctor_ThrowException_WhenMissingLogger()
+        {
+            Should.Throw<ArgumentNullException>(() =>
+                new ShortCodeFactory(new Mock<IShortCodeGenerator>().Object, new Mock<IEncoder>().Object, new ShortCodeOptions(), null))
+                .ParamName.ShouldBe("logger");
+        }
+
+        [Test]
+        public void Ctor_LogsWarning_WhenOptionsAreInconsistent()
+        {
+            var logger = new TestCaptureLogger<ShortCodeFactory>();
+            var options = new ShortCodeOptions
+            {
+                CharacterSpace = Encoder.LettersAndDigits,
+                FixedLength = 20,
+            };
+            var encoder = new Encoder(options.CharacterSpace);
+            _ = new ShortCodeFactory(new Mock<IShortCodeGenerator>().Object, encoder, options, logger);
+            
+            logger.Logs.Count.ShouldBe(1);
+            Console.WriteLine(logger.Logs[0].FormattedMessage);
+            logger.Logs[0].LogLevel.ShouldBe(LogLevel.Warning);
+            logger.Logs[0].FormattedMessage.ShouldStartWith("The Short Code generator will always produce codes with padding");
+        }
+
+        [Test]
+        public void GetNextCode_ShouldReturnCode()
+        {
+            var options = new ShortCodeOptions
+            {
+                CharacterSpace = Encoder.LettersAndDigits,
+                FixedLength = 5,
+            };
+            var factory = new ShortCodeFactory(
+                new GuidCodeGenerator(),
+                new Encoder(Encoder.ReducedAmbiguity),
+                options,
+                new NullLogger<ShortCodeFactory>());
+
+            var result = factory.GetNextCode();
+            Console.WriteLine(result);
+            result.Length.ShouldBe(5);
+        }
+        
+        [TestCase(1)]
+        [TestCase(5)]
+        [TestCase(10)]
+        [TestCase(100)]
+        public void GetCodes_ShouldReturnRequiredNumberOfCodes(int numberOfCodes)
+        {
+            var options = new ShortCodeOptions
+            {
+                CharacterSpace = Encoder.LettersAndDigits,
+                FixedLength = 5,
+            };
+            var factory = new ShortCodeFactory(
+                new GuidCodeGenerator(),
+                new Encoder(Encoder.ReducedAmbiguity),
+                options,
+                new NullLogger<ShortCodeFactory>());
+
+            var result = factory.GetCodes(numberOfCodes).ToArray();
+            result.Length.ShouldBe(numberOfCodes);
+            result.Distinct().Count().ShouldBe(numberOfCodes);
+        }
+
+    }
+}

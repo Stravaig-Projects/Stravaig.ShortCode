@@ -2,8 +2,8 @@
 using System.Text;
 
 namespace Stravaig.ShortCode
-{ 
-    public class CharacterSpace
+{
+    public class Encoder : IEncoder
     {
         public const string Digits = "0123456789";
         public const string Hex = "0123456789ABCDEF";
@@ -14,7 +14,7 @@ namespace Stravaig.ShortCode
         public const string ReducedAmbiguity = "ABCDEFGHJKLMNPRTUVWXY2346789";
 
         private readonly string _characterSpace;
-        public CharacterSpace(string characterSpace)
+        public Encoder(string characterSpace)
         {
             if (string.IsNullOrWhiteSpace(characterSpace))
                 throw new ArgumentException("Value cannot be null or whitespace.", nameof(characterSpace));
@@ -52,10 +52,12 @@ namespace Stravaig.ShortCode
         {
             ulong divisor = (ulong) _characterSpace.Length;
             StringBuilder result = new StringBuilder();
-            while (fullCode != 0 || result.Length >= maxChars)
+            while (fullCode != 0)
             {
                 ulong remainder = fullCode % divisor;
                 result.Append(_characterSpace[(int) remainder]);
+                if (result.Length >= maxChars)
+                    break;
                 fullCode -= remainder;
                 fullCode /= divisor;
             }
