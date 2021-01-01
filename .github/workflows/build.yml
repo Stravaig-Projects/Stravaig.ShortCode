@@ -92,6 +92,11 @@ jobs:
             Write-Output "Pushing $name"; 
             dotnet nuget push "$name" --api-key ${{ secrets.STRAVAIG_NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
           }
+      
+      - name: Run Benchmarks
+        # if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
+        shell: pwsh
+        run: ./Run-Benchmarks.ps1
 
       - name: List Contributors
         shell: pwsh
@@ -111,6 +116,7 @@ jobs:
             release-notes/full-release-notes.md
             release-notes/release-notes-${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}.md
             out/**
+            BenchmarkDotNet.Artifacts/**
           retention-days: 7
 
       - name: Archive Release Notes
@@ -123,6 +129,7 @@ jobs:
             release-notes/full-release-notes.md
             release-notes/release-notes-${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}.md
             out/**
+            BenchmarkDotNet.Artifacts/**
         
       - name: Mark Release
         if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
