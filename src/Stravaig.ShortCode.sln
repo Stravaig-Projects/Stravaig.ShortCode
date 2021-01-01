@@ -1,5 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# 
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stravaig.ShortCode", "Stravaig.ShortCode\Stravaig.ShortCode.csproj", "{ECD417AB-33E0-41E0-97DE-A4907A0798B1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stravaig.ShortCode.Tests", "Stravaig.ShortCode.Tests\Stravaig.ShortCode.Tests.csproj", "{2F675E2C-415D-49C0-AAC0-2B90B2C65AE6}"
@@ -9,16 +10,18 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example", "Example\Example.csproj", "{5E10BEFD-3506-49FA-980A-4A95AD09C904}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "__Build_and_Deploy", "__Build_and_Deploy", "{20B5F27C-F80B-430E-B8A4-8E1023974064}"
-ProjectSection(SolutionItems) = preProject
-	..\.github\workflows\build.yml = ..\.github\workflows\build.yml
-EndProjectSection
+	ProjectSection(SolutionItems) = preProject
+		..\.github\workflows\build.yml = ..\.github\workflows\build.yml
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "__Documenation", "__Documenation", "{9342FEEB-81FD-48BE-BA72-773C679EB0D1}"
-ProjectSection(SolutionItems) = preProject
-	..\README.md = ..\README.md
-	..\release-notes\wip-release-notes.md = ..\release-notes\wip-release-notes.md
-	..\LICENSE = ..\LICENSE
-EndProjectSection
+	ProjectSection(SolutionItems) = preProject
+		..\README.md = ..\README.md
+		..\release-notes\wip-release-notes.md = ..\release-notes\wip-release-notes.md
+		..\LICENSE = ..\LICENSE
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stravaig.ShortCode.Benchmarks", "Stravaig.ShortCode.Benchmarks\Stravaig.ShortCode.Benchmarks.csproj", "{52F20BF5-6251-465E-9EAC-FFAA82DC3931}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,5 +45,9 @@ Global
 		{5E10BEFD-3506-49FA-980A-4A95AD09C904}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E10BEFD-3506-49FA-980A-4A95AD09C904}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E10BEFD-3506-49FA-980A-4A95AD09C904}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52F20BF5-6251-465E-9EAC-FFAA82DC3931}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52F20BF5-6251-465E-9EAC-FFAA82DC3931}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52F20BF5-6251-465E-9EAC-FFAA82DC3931}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52F20BF5-6251-465E-9EAC-FFAA82DC3931}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
