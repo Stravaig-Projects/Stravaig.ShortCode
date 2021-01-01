@@ -1,5 +1,13 @@
 # Full Release Notes
 
+## Version 0.1.0
+
+Date: Friday, 1 January, 2021 at 22:15:52 +00:00
+
+### Features
+
+Initial Release
+
 ## Version 0.4.0
 
 Date: Sunday, 29 November, 2020 at 22:52:54 +00:00
