@@ -5,7 +5,7 @@
         <Title>Stravaig Short Code</Title>
         <Authors>Colin Angus Mackay</Authors>
         <Description>A set of short code generators.</Description>
-        <Copyright>©2020 Colin Angus Mackay. See licence for more information.</Copyright>
+        <Copyright>©2020-2021 Stravaig Projects. See licence for more information.</Copyright>
         <PackageProjectUrl>https://github.com/Stravaig-Projects/Stravaig.ShortCode/blob/main/README.md</PackageProjectUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <RepositoryUrl>https://github.com/Stravaig-Projects/Stravaig.ShortCode</RepositoryUrl>
