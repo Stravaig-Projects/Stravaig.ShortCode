@@ -154,13 +154,18 @@ jobs:
         if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' && env.STRAVAIG_IS_STABLE == 'true' }}
         shell: pwsh
         run: ./Reset-WipReleaseNotes.ps1
-        
+
+      - name: Copy Benchmark Results
+        # if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' && env.STRAVAIG_IS_STABLE == 'true' }}
+        shell: pwsh
+        run: Copy-Item -Path BenchmarkDotNet.Artifacts/results/Stravaig.ShortCode.Benchmarks.CodeGeneratorBenchmarks-report-github.md -Destination Benchmarks.md
+
       - name: Commit post release updates
         #IF Publishing & Stable release
         if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' && env.STRAVAIG_IS_STABLE == 'true' }}
         uses: EndBug/add-and-commit@v5
         with:
-          add: ./contributors.md ./release-notes/** ./version.txt
+          add: ./contributors.md ./release-notes/** ./version.txt Benchmarks.md
           author_name: StravaigBot
           author_email: github@stravaig.scot
           message: "[bot] Post v${{ env.STRAVAIG_PACKAGE_FULL_VERSION }} Release & Bump Version updates."
