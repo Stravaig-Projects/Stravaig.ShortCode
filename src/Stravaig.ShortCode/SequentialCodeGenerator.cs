@@ -4,6 +4,11 @@ namespace Stravaig.ShortCode
     {
         private ulong _code;
         private readonly object _syncLock = new object();
+
+        public SequentialCodeGenerator()
+            : this(0)
+        {
+        }
         
         public SequentialCodeGenerator(ulong seed)
         {
