@@ -94,7 +94,7 @@ jobs:
           }
       
       - name: Run Benchmarks
-        # if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
+        if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
         shell: pwsh
         run: ./Run-Benchmarks.ps1
 
@@ -156,7 +156,7 @@ jobs:
         run: ./Reset-WipReleaseNotes.ps1
 
       - name: Copy Benchmark Results
-        # if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' && env.STRAVAIG_IS_STABLE == 'true' }}
+        if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' && env.STRAVAIG_IS_STABLE == 'true' }}
         shell: pwsh
         run: Copy-Item -Path BenchmarkDotNet.Artifacts/results/Stravaig.ShortCode.Benchmarks.CodeGeneratorBenchmarks-report-github.md -Destination Benchmarks.md
 
