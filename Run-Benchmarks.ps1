@@ -1,0 +1,1 @@
+dotnet run --project ./src/Stravaig.ShortCode.Benchmarks/Stravaig.ShortCode.Benchmarks.csproj -c Release -- -e GitHub --filter CodeGeneratorBenchmarks

@@ -3,6 +3,7 @@ using BenchmarkDotNet.Attributes;
 
 namespace Stravaig.ShortCode.Benchmarks
 {
+    [MarkdownExporterAttribute.GitHub]
     public class CodeGeneratorBenchmarks
     {
         private RandomCodeGenerator _random = new RandomCodeGenerator();
