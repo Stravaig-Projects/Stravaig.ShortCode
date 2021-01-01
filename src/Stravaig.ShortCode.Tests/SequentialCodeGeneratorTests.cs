@@ -15,19 +15,9 @@ namespace Stravaig.ShortCode.Tests
             gen.GetNextCode().ShouldBe(3UL);
         }
 
-        [Test]
-        public void SingleThreadStressTest()
+        protected override IShortCodeGenerator GetGenerator(string testName = null)
         {
-            var gen = new SequentialCodeGenerator(0);
-            SingleThreadStressTest(gen);
-        }
-
-        [Test]
-        [Category("LongStressTest")]
-        public void MultiThreadStressTest()
-        {
-            var gen = new SequentialCodeGenerator(0);
-            MultiThreadStressTest(gen);
+            return new SequentialCodeGenerator(0);
         }
     }
 }

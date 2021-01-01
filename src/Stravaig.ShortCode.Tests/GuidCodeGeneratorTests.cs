@@ -5,19 +5,9 @@ namespace Stravaig.ShortCode.Tests
     [TestFixture]
     public class GuidCodeGeneratorTests : CodeGeneratorTestsBase
     {
-        [Test]
-        public void SingleThreadStressTest()
+        protected override IShortCodeGenerator GetGenerator(string testName = null)
         {
-            var gen = new GuidCodeGenerator();
-            SingleThreadStressTest(gen);
-        }
-
-        [Test]
-        [Category("LongStressTest")]
-        public void MultiThreadStressTest()
-        {
-            var gen = new GuidCodeGenerator();
-            MultiThreadStressTest(gen);
+            return new GuidCodeGenerator();
         }
     }
 }

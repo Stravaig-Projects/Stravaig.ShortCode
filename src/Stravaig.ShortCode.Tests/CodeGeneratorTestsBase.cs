@@ -4,25 +4,23 @@ using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using NUnit.Framework;
 using Shouldly;
 
 namespace Stravaig.ShortCode.Tests
 {
-    public class CodeGeneratorTestsBase
+    public abstract class CodeGeneratorTestsBase
     {
+        private const int ShortRunSize = 1024 * 4;
         private const int RunSize = 1024 * 1024 * 4;
+
+        protected abstract IShortCodeGenerator GetGenerator([CallerMemberName] string testName = null);
         
-        private void GenerateLots(IShortCodeGenerator gen, ulong[] result)
+        [Test]
+        [Category("LongStressTest")]
+        public void MultiThreadStressTest()
         {
-            int count = result.Length;
-            for (int i = 0; i < count; i++)
-            {
-                result[i] = gen.GetNextCode();
-            }
-        }
-        
-        protected void MultiThreadStressTest(IShortCodeGenerator gen)
-        {
+            var gen = GetGenerator();            
             var threadCount = Environment.ProcessorCount * 2;
             var tasks = new List<Task<ulong[]>>(threadCount);
             for (int i = 0; i < threadCount; i++)
@@ -52,15 +50,30 @@ namespace Stravaig.ShortCode.Tests
             CheckAccuracy(allResults);
         }
         
-        protected void SingleThreadStressTest(IShortCodeGenerator gen)
+        [Test]
+        [Category("LongStressTest")]
+        public void SingleThreadStressTest()
         {
+            var gen = GetGenerator();
             var result = new ulong[RunSize];
+            SingleThreadStressTestImpl(gen, result);
+        }
+
+        [Test]
+        public void ShortSingleThreadStressTest()
+        {
+            var gen = GetGenerator();
+            var result = new ulong[ShortRunSize];
+            SingleThreadStressTestImpl(gen, result);
+        }
+
+        private void SingleThreadStressTestImpl(IShortCodeGenerator gen, ulong[] result)
+        {
             Stopwatch sw = new Stopwatch();
             sw.Start();
             GenerateLots(gen, result);
             sw.Stop();
             ResultReadOut(result.Length, sw);
-
             CheckAccuracy(result);
         }
 
@@ -72,6 +85,15 @@ namespace Stravaig.ShortCode.Tests
             var errorRate = 1 / errorRatePercent;
             Console.WriteLine($"{distinctCount} of {totalCount} unique results. ({errorRatePercent:P2} error rate; or 1 in every {errorRate:F0})");
             distinctCount.ShouldBe(totalCount);
+        }
+
+        private void GenerateLots(IShortCodeGenerator gen, ulong[] result)
+        {
+            int count = result.Length;
+            for (int i = 0; i < count; i++)
+            {
+                result[i] = gen.GetNextCode();
+            }
         }
 
         private void ResultReadOut(int totalCount, Stopwatch sw, int? index = null, [CallerMemberName]string caller = null)

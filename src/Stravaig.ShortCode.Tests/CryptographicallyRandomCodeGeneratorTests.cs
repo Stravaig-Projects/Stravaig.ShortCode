@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using NUnit.Framework;
 
 namespace Stravaig.ShortCode.Tests
@@ -5,19 +6,9 @@ namespace Stravaig.ShortCode.Tests
     [TestFixture]
     public class CryptographicallyRandomCodeGeneratorTests : CodeGeneratorTestsBase
     {
-        [Test]
-        public void SingleThreadStressTest()
+        protected override IShortCodeGenerator GetGenerator([CallerMemberName]string testName = null)
         {
-            var gen = new CryptographicallyRandomCodeGenerator();
-            SingleThreadStressTest(gen);
-        }
-
-        [Test]
-        [Category("LongStressTest")]
-        public void MultiThreadStressTest()
-        {
-            var gen = new CryptographicallyRandomCodeGenerator();
-            MultiThreadStressTest(gen);
+            return new CryptographicallyRandomCodeGenerator();
         }
     }
 }
