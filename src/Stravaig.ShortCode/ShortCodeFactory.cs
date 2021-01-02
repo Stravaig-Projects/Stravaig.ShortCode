@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
+using Microsoft.Extensions.Options;
 
 namespace Stravaig.ShortCode
 {
@@ -21,11 +22,22 @@ namespace Stravaig.ShortCode
             WarnOnInconsistentOptions();
         }
 
+        public ShortCodeFactory(IShortCodeGenerator generator, IEncoder encoder, IOptions<ShortCodeOptions> options,
+            ILogger<ShortCodeFactory> logger)
+            : this(generator, encoder, options?.Value, logger)
+        {
+        }
+
         public ShortCodeFactory(IShortCodeGenerator generator, IEncoder encoder, ShortCodeOptions options)
             : this(generator, encoder, options, new NullLogger<ShortCodeFactory>())
         {
         }
 
+        public ShortCodeFactory(IShortCodeGenerator generator, IEncoder encoder, IOptions<ShortCodeOptions> options)
+            : this(generator, encoder, options?.Value)
+        {
+        }
+        
         private void WarnOnInconsistentOptions()
         {
             if (_options.FixedLength.HasValue && _options.FixedLength.Value > _encoder.MaxLength())

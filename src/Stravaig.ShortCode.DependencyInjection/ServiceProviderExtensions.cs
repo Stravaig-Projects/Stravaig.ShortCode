@@ -1,5 +1,7 @@
 ﻿using System;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 namespace Stravaig.ShortCode.DependencyInjection
 {
@@ -12,12 +14,35 @@ namespace Stravaig.ShortCode.DependencyInjection
         {
             ShortCodeOptions scOptions = new ShortCodeOptions();
             options?.Invoke(scOptions);
+            var extOptions = Options.Create(scOptions);
+            services.AddSingleton(extOptions);
+            
+            services.AddCommonParts<TGenerator>();
+            return services;
+        }
+        
+        public static IServiceCollection AddShortCodeGenerator<TGenerator>(
+            this IServiceCollection services,
+            IConfiguration config)
+            where TGenerator : class, IShortCodeGenerator
+        {
+            var shortCodeSection = config.GetSection($"{nameof(Stravaig)}:{nameof(Stravaig.ShortCode)}");
+            services.Configure<ShortCodeOptions>(shortCodeSection);
+            
+            services.AddCommonParts<TGenerator>();
+            return services;
+        }
 
-            services.AddSingleton(scOptions);
-            services.AddSingleton<IEncoder>(p => new Encoder(scOptions.CharacterSpace));
+        private static void AddCommonParts<TGenerator>(this IServiceCollection services)
+            where TGenerator : class, IShortCodeGenerator
+        {
+            services.AddSingleton<IEncoder>(p =>
+            {
+                var options = p.GetRequiredService<IOptions<ShortCodeOptions>>();
+                return new Encoder(options.Value.CharacterSpace);
+            });
             services.AddSingleton<IShortCodeGenerator, TGenerator>();
             services.AddSingleton<IShortCodeFactory, ShortCodeFactory>();
-            return services;
         }
     }
 }

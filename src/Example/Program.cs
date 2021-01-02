@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Stravaig.ShortCode;
 using Stravaig.ShortCode.DependencyInjection;
@@ -9,12 +10,10 @@ namespace Example
     {
         static void Main(string[] args)
         {
+            var config = BuildConfig();
+
             ServiceCollection services = new ServiceCollection();
-            services.AddShortCodeGenerator<GuidCodeGenerator>(options =>
-            {
-                options.FixedLength = 5;
-                options.CharacterSpace = Encoder.LettersAndDigits;
-            });
+            services.AddShortCodeGenerator<SequentialCodeGenerator>(config);
 
             ServiceProvider provider = services.BuildServiceProvider();
             var factory = provider.GetRequiredService<IShortCodeFactory>();
@@ -27,6 +26,14 @@ namespace Example
             {
                 Console.WriteLine($"GetCodes: {item}");
             }
+        }
+
+        private static IConfigurationRoot BuildConfig()
+        {
+            ConfigurationBuilder configBuilder = new ConfigurationBuilder();
+            configBuilder.AddJsonFile("appsettings.json");
+            var config = configBuilder.Build();
+            return config;
         }
     }
 }
