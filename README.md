@@ -17,7 +17,7 @@ There are two packages. The `Stravaig.ShortCode` package contains the classes ne
 ## Installing the packages
 
 At the command line:
-```powershell
+```
 > dotnet add package Stravaig.ShortCode
 
 > dotnet add package Stravaig.ShortCode.DependencyInjection
@@ -57,6 +57,61 @@ There are many strategies for generating codes, so you will need to specify that
 The `options` are not required, and if missing a reasonable set of defaults will be used. If a logger is set up, a warning will be generated if the options are set up poorly but won't break.
 
 Once set up, in your application code you need to add `IShortCodeFactory` to any class that needs to generate short codes.
+
+### SequentialCodeGenerator
+
+This generator takes additional options as it will reset to zero on each application run (which may not be desirable).
+
+Any generator specific options can be added via the `Generator` options property which is a `Dictionary<string, object>`. The keys are case insensitive.
+
+The `Seed` entry can take a string or number. (Strings will be converted to a `ulong`, so must be parseable.)
+
+```csharp
+  services.AddShortCodeGenerator<GuidCodeGenerator>(options =>
+  {
+      options.FixedLength = 5;
+      options.CharacterSpace = Encoder.LettersAndDigits;
+      options.Generator["Seed"] = 12345;
+  });
+```
+
+### Getting options from the configuration
+
+You can pass an `IConfiguration` object to the code that sets up the code generator. It will then look for the option values in the configuration in the `Stravaig:ShortCode` section.
+
+In the Startup.cs file:
+```csharp
+public class Startup
+{
+  private IConfiguration Configuration { get; }
+
+  public Startup(IConfiguration configuration)
+  {
+    Configuration = configuration;
+  }
+  
+  public void ConfigureServices(IServiceCollection services)
+  {  
+    // Other services for your application.
+    services.AddShortCodeGenerator<GuidCodeGenerator>(Configuration);
+  }
+}
+```
+
+In the appsettings.json file:
+```json
+{
+  "Stravaig": {
+    "ShortCode": {
+      "CharacterSpace": "0123456789QWERTYUIOPLKJHGFDSAZXCVBNM",
+      "FixedLength": 7,
+      "Generator": {
+        "Seed": 12345
+      }
+    }
+  }
+}
+```
 
 ## Using the IShortCodeFactory
 
