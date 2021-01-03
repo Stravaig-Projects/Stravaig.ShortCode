@@ -16,7 +16,7 @@ namespace Stravaig.ShortCode.Tests
         public void Ctor_ThrowException_WhenMissingGenerator()
         {
             Should.Throw<ArgumentNullException>(() =>
-                new ShortCodeFactory(null, null, null, null))
+                new ShortCodeFactory(null, null, (ShortCodeOptions)null, null))
                 .ParamName.ShouldBe("generator");
         }
         
@@ -24,7 +24,7 @@ namespace Stravaig.ShortCode.Tests
         public void Ctor_ThrowException_WhenMissingEncoder()
         {
             Should.Throw<ArgumentNullException>(() =>
-                new ShortCodeFactory(new Mock<IShortCodeGenerator>().Object, null, null, null))
+                new ShortCodeFactory(new Mock<IShortCodeGenerator>().Object, null, (ShortCodeOptions)null, null))
                 .ParamName.ShouldBe("encoder");
         }
 
@@ -32,7 +32,7 @@ namespace Stravaig.ShortCode.Tests
         public void Ctor_ThrowException_WhenMissingOptions()
         {
             Should.Throw<ArgumentNullException>(() =>
-                new ShortCodeFactory(new Mock<IShortCodeGenerator>().Object, new Mock<IEncoder>().Object, null, null))
+                new ShortCodeFactory(new Mock<IShortCodeGenerator>().Object, new Mock<IEncoder>().Object, (ShortCodeOptions)null, null))
                 .ParamName.ShouldBe("options");
         }
 
