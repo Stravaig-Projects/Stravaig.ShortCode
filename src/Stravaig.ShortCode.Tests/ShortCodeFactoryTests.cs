@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
+using Microsoft.Extensions.Options;
 using Moq;
 using NUnit.Framework;
 using Shouldly;
@@ -60,6 +61,30 @@ namespace Stravaig.ShortCode.Tests
             Console.WriteLine(logger.Logs[0].FormattedMessage);
             logger.Logs[0].LogLevel.ShouldBe(LogLevel.Warning);
             logger.Logs[0].FormattedMessage.ShouldStartWith("The Short Code generator will always produce codes with padding");
+        }
+
+        [Test]
+        public void Ctor_IOptionsAndLogger()
+        {
+            var options = Options.Create( new ShortCodeOptions
+            {
+                CharacterSpace = Encoder.LettersAndDigits,
+                FixedLength = 5,
+            });
+            var logger = new TestCaptureLogger<ShortCodeFactory>();
+            _ = new ShortCodeFactory(new GuidCodeGenerator(), new Encoder(Encoder.ReducedAmbiguity), options, logger);
+            logger.Logs.Count.ShouldBe(0);
+        }
+        
+        [Test]
+        public void Ctor_IOptions()
+        {
+            var options = Options.Create( new ShortCodeOptions
+            {
+                CharacterSpace = Encoder.LettersAndDigits,
+                FixedLength = 5,
+            });
+            _ = new ShortCodeFactory(new GuidCodeGenerator(), new Encoder(Encoder.ReducedAmbiguity), options);
         }
 
         [Test]
