@@ -3,7 +3,7 @@ using System.Text;
 
 namespace Stravaig.ShortCode
 {
-    public class Encoder : IEncoder
+    public class CharacterSpace
     {
         public const string Digits = "0123456789";
         public const string Hex = "0123456789ABCDEF";
@@ -12,7 +12,10 @@ namespace Stravaig.ShortCode
         public const string LatinLetters = LowerLatinLetters + UpperLatinLetters;
         public const string LettersAndDigits = LatinLetters + Digits;
         public const string ReducedAmbiguity = "ABCDEFGHJKLMNPRTUVWXY2346789";
+    }
 
+    public class Encoder : IEncoder
+    {
         private readonly string _characterSpace;
         public Encoder(string characterSpace)
         {
