@@ -18,6 +18,7 @@
     <content url="file://$MODULE_DIR$/../../../.github/workflows/build.yml" />
     <content url="file://$MODULE_DIR$/../../../LICENSE" />
     <content url="file://$MODULE_DIR$/../../../README.md" />
+    <content url="file://$MODULE_DIR$/../../../release-notes/full-release-notes.md" />
     <content url="file://$MODULE_DIR$/../../../release-notes/wip-release-notes.md" />
     <content url="file://$MODULE_DIR$/../.." />
     <orderEntry type="sourceFolder" forTests="false" />

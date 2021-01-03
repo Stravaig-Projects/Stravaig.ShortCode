@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# 
+#
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stravaig.ShortCode", "Stravaig.ShortCode\Stravaig.ShortCode.csproj", "{ECD417AB-33E0-41E0-97DE-A4907A0798B1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stravaig.ShortCode.Tests", "Stravaig.ShortCode.Tests\Stravaig.ShortCode.Tests.csproj", "{2F675E2C-415D-49C0-AAC0-2B90B2C65AE6}"
@@ -19,6 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "__Documenation", "__Documen
 		..\README.md = ..\README.md
 		..\release-notes\wip-release-notes.md = ..\release-notes\wip-release-notes.md
 		..\LICENSE = ..\LICENSE
+		..\release-notes\full-release-notes.md = ..\release-notes\full-release-notes.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stravaig.ShortCode.Benchmarks", "Stravaig.ShortCode.Benchmarks\Stravaig.ShortCode.Benchmarks.csproj", "{52F20BF5-6251-465E-9EAC-FFAA82DC3931}"
