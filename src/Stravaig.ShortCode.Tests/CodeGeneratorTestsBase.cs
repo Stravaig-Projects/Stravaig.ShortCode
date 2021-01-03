@@ -29,11 +29,11 @@ namespace Stravaig.ShortCode.Tests
                 int index = i;
                 tasks.Add(new Task<ulong[]>(() =>
                 {
-                    Stopwatch sw = new Stopwatch();
-                    sw.Start();
+                    Stopwatch rsw = new Stopwatch();
+                    rsw.Start();
                     GenerateLots(gen, result);
-                    sw.Stop();
-                    ResultReadOut(result.Length, sw, index);
+                    rsw.Stop();
+                    ResultReadOut(result.Length, rsw, index);
                     return result;
                 }));
             }
@@ -79,8 +79,10 @@ namespace Stravaig.ShortCode.Tests
 
         private static void CheckAccuracy(IEnumerable<ulong> result)
         {
+            // ReSharper disable PossibleMultipleEnumeration
             var totalCount = result.Count();
             var distinctCount = result.Distinct().Count();
+            // ReSharper restore PossibleMultipleEnumeration
             var errorRatePercent = 1.0 - (distinctCount / (double) totalCount);
             var errorRate = 1 / errorRatePercent;
             Console.WriteLine($"{distinctCount} of {totalCount} unique results. ({errorRatePercent:P2} error rate; or 1 in every {errorRate:F0})");

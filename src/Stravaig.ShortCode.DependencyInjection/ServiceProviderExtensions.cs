@@ -26,7 +26,7 @@ namespace Stravaig.ShortCode.DependencyInjection
             IConfiguration config)
             where TGenerator : class, IShortCodeGenerator
         {
-            var shortCodeSection = config.GetSection($"{nameof(Stravaig)}:{nameof(Stravaig.ShortCode)}");
+            var shortCodeSection = config.GetSection($"{nameof(Stravaig)}:{nameof(ShortCode)}");
             services.Configure<ShortCodeOptions>(shortCodeSection);
             
             services.AddCommonParts<TGenerator>();

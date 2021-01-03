@@ -1,4 +1,3 @@
-using System;
 using BenchmarkDotNet.Attributes;
 
 namespace Stravaig.ShortCode.Benchmarks
@@ -10,11 +9,6 @@ namespace Stravaig.ShortCode.Benchmarks
         private GuidCodeGenerator _guid = new GuidCodeGenerator();
         private SequentialCodeGenerator _sequential = new SequentialCodeGenerator(0);
         private CryptographicallyRandomCodeGenerator _cryptoRandom = new CryptographicallyRandomCodeGenerator();
-
-        public CodeGeneratorBenchmarks()
-        {
-            
-        }
 
         [Benchmark]
         public void RandomGenerator() => _random.GetNextCode();

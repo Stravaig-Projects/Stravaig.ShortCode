@@ -8,7 +8,7 @@ namespace Example
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             var config = BuildConfig();
 
