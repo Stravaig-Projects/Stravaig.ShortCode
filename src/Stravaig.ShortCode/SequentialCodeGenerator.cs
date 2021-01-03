@@ -39,7 +39,7 @@ namespace Stravaig.ShortCode
             var rawValue = options.Generator[key];
             if (rawValue is string stringValue)
                 return Convert.ToUInt64(stringValue);
-            return (ulong) rawValue;
+            return (ulong) Convert.ChangeType(rawValue, TypeCode.UInt64);
         }
         
         public ulong GetNextCode()
