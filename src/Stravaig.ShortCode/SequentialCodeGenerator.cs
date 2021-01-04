@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using Microsoft.Extensions.Options;
+using Stravaig.ShortCode.Internal;
 
 namespace Stravaig.ShortCode
 {
@@ -32,14 +33,7 @@ namespace Stravaig.ShortCode
 
         private static ulong GetSeed(ShortCodeOptions options)
         {
-            var key = options.Generator.Keys
-                .FirstOrDefault(k => k.Equals(OptionsSeedKey, StringComparison.OrdinalIgnoreCase));
-            if (key == null)
-                return 0UL;
-            var rawValue = options.Generator[key];
-            if (rawValue is string stringValue)
-                return Convert.ToUInt64(stringValue);
-            return (ulong) Convert.ChangeType(rawValue, TypeCode.UInt64);
+            return options.GetGeneratorUInt64(OptionsSeedKey);
         }
         
         public ulong GetNextCode()
