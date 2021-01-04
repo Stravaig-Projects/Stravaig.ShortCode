@@ -16,8 +16,10 @@
     <content url="file://$USER_HOME$/.nuget/packages/nunit3testadapter/3.17.0/build/netcoreapp2.1/nunit.engine.core.dll" />
     <content url="file://$USER_HOME$/.nuget/packages/nunit3testadapter/3.17.0/build/netcoreapp2.1/nunit.engine.dll" />
     <content url="file://$MODULE_DIR$/../../../.github/workflows/build.yml" />
+    <content url="file://$MODULE_DIR$/../../../.stravaig/list-contributor-akas.json" />
     <content url="file://$MODULE_DIR$/../../../LICENSE" />
     <content url="file://$MODULE_DIR$/../../../README.md" />
+    <content url="file://$MODULE_DIR$/../../../list-contributors.ps1" />
     <content url="file://$MODULE_DIR$/../../../release-notes/full-release-notes.md" />
     <content url="file://$MODULE_DIR$/../../../release-notes/wip-release-notes.md" />
     <content url="file://$MODULE_DIR$/../.." />

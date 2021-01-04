@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 #
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stravaig.ShortCode", "Stravaig.ShortCode\Stravaig.ShortCode.csproj", "{ECD417AB-33E0-41E0-97DE-A4907A0798B1}"
@@ -12,6 +12,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "__Build_and_Deploy", "__Build_and_Deploy", "{20B5F27C-F80B-430E-B8A4-8E1023974064}"
 	ProjectSection(SolutionItems) = preProject
 		..\.github\workflows\build.yml = ..\.github\workflows\build.yml
+		..\list-contributors.ps1 = ..\list-contributors.ps1
+		..\.stravaig\list-contributor-akas.json = ..\.stravaig\list-contributor-akas.json
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "__Documenation", "__Documenation", "{9342FEEB-81FD-48BE-BA72-773C679EB0D1}"

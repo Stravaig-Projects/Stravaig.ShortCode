@@ -31,7 +31,10 @@ param
     [System.IO.FileInfo]$IgnoredNamesPath,
 
     [parameter(Mandatory=$false)]
-    [System.IO.FileInfo]$IgnoredEmailsPath
+    [System.IO.FileInfo]$IgnoredEmailsPath,
+
+    [Switch]
+    $HideAKAs
 )
 
 function Test-StringEquality($A, $B)
@@ -311,7 +314,7 @@ foreach($contributor in $contributors)
 {
     $name = $contributor.PrimaryName;
     $aka = ""
-    if ($contributor.Names.Length -gt 1)
+    if ($contributor.Names.Length -gt 1 -and $HideAKAs -eq $false)
     {
         $aka = " (AKA ";
         $isFirst = $true;
