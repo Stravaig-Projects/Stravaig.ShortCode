@@ -51,7 +51,7 @@ namespace Stravaig.ShortCode.Tests
             var logger = new TestCaptureLogger<ShortCodeFactory>();
             var options = new ShortCodeOptions
             {
-                CharacterSpace = CharacterSpace.LettersAndDigits,
+                CharacterSpace = NamedCharacterSpaces.LettersAndDigits,
                 FixedLength = 20,
             };
             var encoder = new Encoder(options.CharacterSpace);
@@ -68,11 +68,11 @@ namespace Stravaig.ShortCode.Tests
         {
             var options = Options.Create( new ShortCodeOptions
             {
-                CharacterSpace = CharacterSpace.LettersAndDigits,
+                CharacterSpace = NamedCharacterSpaces.LettersAndDigits,
                 FixedLength = 5,
             });
             var logger = new TestCaptureLogger<ShortCodeFactory>();
-            _ = new ShortCodeFactory(new GuidCodeGenerator(), new Encoder(CharacterSpace.ReducedAmbiguity), options, logger);
+            _ = new ShortCodeFactory(new GuidCodeGenerator(), new Encoder(NamedCharacterSpaces.ReducedAmbiguity), options, logger);
             logger.Logs.Count.ShouldBe(0);
         }
         
@@ -81,10 +81,10 @@ namespace Stravaig.ShortCode.Tests
         {
             var options = Options.Create( new ShortCodeOptions
             {
-                CharacterSpace = CharacterSpace.LettersAndDigits,
+                CharacterSpace = NamedCharacterSpaces.LettersAndDigits,
                 FixedLength = 5,
             });
-            _ = new ShortCodeFactory(new GuidCodeGenerator(), new Encoder(CharacterSpace.ReducedAmbiguity), options);
+            _ = new ShortCodeFactory(new GuidCodeGenerator(), new Encoder(NamedCharacterSpaces.ReducedAmbiguity), options);
         }
 
         [Test]
@@ -92,12 +92,12 @@ namespace Stravaig.ShortCode.Tests
         {
             var options = new ShortCodeOptions
             {
-                CharacterSpace = CharacterSpace.LettersAndDigits,
+                CharacterSpace = NamedCharacterSpaces.LettersAndDigits,
                 FixedLength = 5,
             };
             var factory = new ShortCodeFactory(
                 new GuidCodeGenerator(),
-                new Encoder(CharacterSpace.ReducedAmbiguity),
+                new Encoder(NamedCharacterSpaces.ReducedAmbiguity),
                 options,
                 new NullLogger<ShortCodeFactory>());
 
@@ -114,12 +114,12 @@ namespace Stravaig.ShortCode.Tests
         {
             var options = new ShortCodeOptions
             {
-                CharacterSpace = CharacterSpace.LettersAndDigits,
+                CharacterSpace = NamedCharacterSpaces.LettersAndDigits,
                 FixedLength = 5,
             };
             var factory = new ShortCodeFactory(
                 new GuidCodeGenerator(),
-                new Encoder(CharacterSpace.ReducedAmbiguity),
+                new Encoder(NamedCharacterSpaces.ReducedAmbiguity),
                 options,
                 new NullLogger<ShortCodeFactory>());
 

@@ -5,5 +5,8 @@ namespace Stravaig.ShortCode
         string Convert(ulong fullCode, int? fixedChars = null, int maxChars = int.MaxValue);
         ulong RangeRequired(int numChars);
         int MaxLength();
+        
+        string NamedCharacterSpace { get; }
+        string CharacterSpace { get; }
     }
 }

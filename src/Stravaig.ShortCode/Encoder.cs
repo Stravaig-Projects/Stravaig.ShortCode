@@ -3,17 +3,6 @@ using System.Text;
 
 namespace Stravaig.ShortCode
 {
-    public class CharacterSpace
-    {
-        public const string Digits = "0123456789";
-        public const string Hex = "0123456789ABCDEF";
-        public const string UpperLatinLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        public const string LowerLatinLetters = "abcdefghijklmnopqrstuvwxyz";
-        public const string LatinLetters = LowerLatinLetters + UpperLatinLetters;
-        public const string LettersAndDigits = LatinLetters + Digits;
-        public const string ReducedAmbiguity = "ABCDEFGHJKLMNPRTUVWXY2346789";
-    }
-
     public class Encoder : IEncoder
     {
         private readonly string _characterSpace;
@@ -30,7 +19,7 @@ namespace Stravaig.ShortCode
         {
             if (fullCode == 0) 
                 throw new ArgumentOutOfRangeException(nameof(fullCode), $"Must be greater than zero.");
-
+            
             if (fixedChars.HasValue && fixedChars.Value < maxChars)
                 maxChars = fixedChars.Value;
             
@@ -50,7 +39,21 @@ namespace Stravaig.ShortCode
         {
             return (int)(Math.Log(ulong.MaxValue) / Math.Log(_characterSpace.Length));
         }
-        
+
+        public string CharacterSpace => _characterSpace;
+
+        public string NamedCharacterSpace =>
+            NamedCharacterSpaces.SpaceToName.TryGetValue(_characterSpace, out string result)
+                ? result
+                : null;
+
+        public override string ToString()
+        {
+            if (NamedCharacterSpaces.SpaceToName.TryGetValue(_characterSpace, out string name))
+                return $"{GetType().Name}({name})";
+            return $"{GetType().Name}(\"{_characterSpace}\")";
+        }
+
         private StringBuilder BuildShortCode(ulong fullCode, int maxChars)
         {
             ulong divisor = (ulong) _characterSpace.Length;
@@ -85,6 +88,6 @@ namespace Stravaig.ShortCode
                 sb[sb.Length - i - 1] = sb[i];  
                 sb[i] = temp;  
             }  
-        }  
+        }
     }
 }
