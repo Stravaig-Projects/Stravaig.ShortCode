@@ -1,11 +1,11 @@
-﻿using System;
-
-namespace Stravaig.ShortCode
+using System;
+using System.Text;
+namespace Stravaig.ShortCode.Benchmarks.Variants
 {
-    public class Encoder : IEncoder
+    public class Encoder1 : IEncoder
     {
         private readonly string _characterSpace;
-        public Encoder(string characterSpace)
+        public Encoder1(string characterSpace)
         {
             if (string.IsNullOrWhiteSpace(characterSpace))
                 throw new ArgumentException("Value cannot be null or whitespace.", nameof(characterSpace));
@@ -14,7 +14,7 @@ namespace Stravaig.ShortCode
             _characterSpace = characterSpace;
         }
         
-        public string Convert(ulong fullCode, int? fixedChars = null, int maxChars = 64)
+        public string Convert(ulong fullCode, int? fixedChars = null, int maxChars = int.MaxValue)
         {
             if (fullCode == 0) 
                 throw new ArgumentOutOfRangeException(nameof(fullCode), $"Must be greater than zero.");
@@ -22,11 +22,11 @@ namespace Stravaig.ShortCode
             if (fixedChars.HasValue && fixedChars.Value < maxChars)
                 maxChars = fixedChars.Value;
             
-            var (resultChars, index) = BuildShortCode(fullCode, maxChars);
-            index = PadToFixedLength(fixedChars, resultChars, index);
-            Reverse(resultChars, index);
+            var result = BuildShortCode(fullCode, maxChars);
+            PadToFixedLength(fixedChars, result);
+            Reverse(result);
 
-            return new String(resultChars, 0, index);
+            return result.ToString();
         }
 
         public ulong RangeRequired(int numChars)
@@ -53,45 +53,40 @@ namespace Stravaig.ShortCode
             return $"{GetType().Name}(\"{_characterSpace}\")";
         }
 
-        private (char[], int) BuildShortCode(ulong fullCode, int maxChars)
+        private StringBuilder BuildShortCode(ulong fullCode, int maxChars)
         {
             ulong divisor = (ulong) _characterSpace.Length;
-            char[] resultChars = new char[maxChars];
-            int index = 0;
+            StringBuilder result = new StringBuilder();
             while (fullCode != 0)
             {
                 ulong remainder = fullCode % divisor;
-                resultChars[index] = _characterSpace[(int) remainder];
-                index++;
-                if (index >= maxChars)
+                result.Append(_characterSpace[(int) remainder]);
+                if (result.Length >= maxChars)
                     break;
-                fullCode = (fullCode - remainder) / divisor;
+                fullCode -= remainder;
+                fullCode /= divisor;
             }
 
-            return (resultChars, index);
+            return result;
         }
 
-        private int PadToFixedLength(int? fixedChars, char[] resultChars, int index)
+        private void PadToFixedLength(int? fixedChars, StringBuilder result)
         {
             if (fixedChars.HasValue)
             {
-                while (index < fixedChars.Value)
-                    resultChars[index++] = _characterSpace[0];
+                while (result.Length < fixedChars.Value)
+                    result.Append(_characterSpace[0]);
             }
-
-            return index;
         }
         
-        private static void Reverse(char[] resultChars, int length)
+        private static void Reverse(StringBuilder sb)
         {
-            var halfWay = length / 2;
-            for (int i = 0; i < halfWay; i++)
-            {
-                var endIndex = length - i - 1;
-                var temp = resultChars[endIndex];  
-                resultChars[endIndex] = resultChars[i];  
-                resultChars[i] = temp;
-            }
+            for (int i = 0; i < sb.Length / 2; i++)
+            { 
+                var temp = sb[sb.Length - i - 1];  
+                sb[sb.Length - i - 1] = sb[i];  
+                sb[i] = temp;  
+            }  
         }
     }
 }

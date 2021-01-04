@@ -1,11 +1,10 @@
-﻿using System;
-
-namespace Stravaig.ShortCode
+using System;
+namespace Stravaig.ShortCode.Benchmarks.Variants
 {
-    public class Encoder : IEncoder
+    public class Encoder2 : IEncoder
     {
         private readonly string _characterSpace;
-        public Encoder(string characterSpace)
+        public Encoder2(string characterSpace)
         {
             if (string.IsNullOrWhiteSpace(characterSpace))
                 throw new ArgumentException("Value cannot be null or whitespace.", nameof(characterSpace));

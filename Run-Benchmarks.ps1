@@ -1,6 +1,6 @@
 param(
     [string]
-    [ValidateSet("EncoderBenchmarks", "CodeGeneratorBenchmarks", "*")]
+    [ValidateSet("EncoderBenchmarks", "CodeGeneratorBenchmarks", "EncoderVariantBenchmarks", "*")]
     $Benchmarks
 )
 
