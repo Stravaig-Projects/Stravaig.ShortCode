@@ -24,6 +24,7 @@
     <content url="file://$MODULE_DIR$/../../../release-notes/full-release-notes.md" />
     <content url="file://$MODULE_DIR$/../../../release-notes/wip-release-notes.md" />
     <content url="file://$MODULE_DIR$/../.." />
+    <content url="file://$MODULE_DIR$/../../../version.txt" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>

@@ -23,6 +23,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "__Documenation", "__Documen
 		..\release-notes\wip-release-notes.md = ..\release-notes\wip-release-notes.md
 		..\LICENSE = ..\LICENSE
 		..\release-notes\full-release-notes.md = ..\release-notes\full-release-notes.md
+		..\version.txt = ..\version.txt
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stravaig.ShortCode.Benchmarks", "Stravaig.ShortCode.Benchmarks\Stravaig.ShortCode.Benchmarks.csproj", "{52F20BF5-6251-465E-9EAC-FFAA82DC3931}"
