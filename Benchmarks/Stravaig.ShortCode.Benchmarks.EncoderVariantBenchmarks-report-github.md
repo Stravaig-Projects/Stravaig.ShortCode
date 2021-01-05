@@ -10,7 +10,7 @@ Toolchain=InProcessEmitToolchain
 ```
 |                                               Method |     Mean |   Error |  StdDev | Ratio |
 |----------------------------------------------------- |---------:|--------:|--------:|------:|
-| &#39;The version that is currently in the main project.&#39; | 131.8 ns | 0.55 ns | 0.52 ns |  1.00 |
-|                                &#39;03/Jan/2021 Variant&#39; | 158.5 ns | 1.02 ns | 0.95 ns |  1.20 |
-|                                &#39;04/Jan/2021 Variant&#39; | 131.9 ns | 0.67 ns | 0.63 ns |  1.00 |
-|                               &#39;Repeat the baseline.&#39; | 132.8 ns | 0.61 ns | 0.54 ns |  1.01 |
+| &#39;The version that is currently in the main project.&#39; | 132.3 ns | 0.76 ns | 0.71 ns |  1.00 |
+|                                &#39;03/Jan/2021 Variant&#39; | 157.2 ns | 0.35 ns | 0.31 ns |  1.19 |
+|                                &#39;04/Jan/2021 Variant&#39; | 131.5 ns | 0.63 ns | 0.59 ns |  0.99 |
+|                               &#39;Repeat the baseline.&#39; | 130.2 ns | 0.15 ns | 0.14 ns |  0.98 |

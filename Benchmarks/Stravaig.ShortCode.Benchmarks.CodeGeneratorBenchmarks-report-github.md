@@ -10,7 +10,7 @@ Toolchain=InProcessEmitToolchain
 ```
 |                           Method |     Mean |    Error |   StdDev |
 |--------------------------------- |---------:|---------:|---------:|
-|                  RandomGenerator | 67.07 ns | 0.301 ns | 0.267 ns |
-|                    GuidGenerator | 79.22 ns | 0.302 ns | 0.282 ns |
-|              SequentialGenerator | 14.57 ns | 0.055 ns | 0.052 ns |
-| CryptographicallyRandomGenerator | 82.68 ns | 0.280 ns | 0.262 ns |
+|                  RandomGenerator | 70.99 ns | 0.751 ns | 0.666 ns |
+|                    GuidGenerator | 80.57 ns | 0.155 ns | 0.138 ns |
+|              SequentialGenerator | 14.64 ns | 0.062 ns | 0.052 ns |
+| CryptographicallyRandomGenerator | 87.06 ns | 0.765 ns | 0.678 ns |
