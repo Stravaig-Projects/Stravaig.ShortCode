@@ -14,5 +14,5 @@ Date: ???
 ### Miscellaneous
 
 * Add additional benchmarks.
-* Update contributors script.
+* Update contributors script & call from build.
 

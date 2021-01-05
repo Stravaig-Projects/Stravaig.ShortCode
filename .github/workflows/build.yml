@@ -95,7 +95,7 @@ jobs:
       
       - name: List Contributors
         shell: pwsh
-        run: ./list-contributors.ps1
+        run: ./list-contributors.ps1 -HideAKAs
 
       - name: Build Release Notes
         shell: pwsh
