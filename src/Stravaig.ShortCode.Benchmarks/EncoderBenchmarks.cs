@@ -17,7 +17,6 @@ namespace Stravaig.ShortCode.Benchmarks
         }
         
         private ulong[] _codes = new ulong[1];
-        private IEncoder _defaultEncoder;
 
         [Params(3, 5, 7, 9)]
         public int FixedLength { get; set; }

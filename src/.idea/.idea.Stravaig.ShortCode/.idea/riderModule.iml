@@ -20,6 +20,7 @@
     <content url="file://$MODULE_DIR$/../../../LICENSE" />
     <content url="file://$MODULE_DIR$/../../../README.md" />
     <content url="file://$MODULE_DIR$/../../../Run-Benchmarks.ps1" />
+    <content url="file://$MODULE_DIR$/../../../Set-Version.ps1" />
     <content url="file://$MODULE_DIR$/../../../build-release-notes.ps1" />
     <content url="file://$MODULE_DIR$/../../../contributors.md" />
     <content url="file://$MODULE_DIR$/../../../list-contributors.ps1" />

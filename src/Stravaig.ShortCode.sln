@@ -16,6 +16,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "__Build_and_Deploy", "__Bui
 		..\.stravaig\list-contributor-akas.json = ..\.stravaig\list-contributor-akas.json
 		..\Run-Benchmarks.ps1 = ..\Run-Benchmarks.ps1
 		..\build-release-notes.ps1 = ..\build-release-notes.ps1
+		..\version.txt = ..\version.txt
+		..\Set-Version.ps1 = ..\Set-Version.ps1
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "__Documenation", "__Documenation", "{9342FEEB-81FD-48BE-BA72-773C679EB0D1}"
