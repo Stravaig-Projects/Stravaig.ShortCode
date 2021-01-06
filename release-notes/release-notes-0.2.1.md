@@ -1,4 +1,4 @@
-# Full Release Notes
+# Release Notes
 
 ## Version 0.2.1
 
@@ -18,10 +18,3 @@ Date: Wednesday, 6 January, 2021 at 23:33:35 +00:00
 * Add additional benchmarks.
 * Update contributors script & call from build.
 
-## Version 0.1.0
-
-Date: Friday, 1 January, 2021 at 22:15:52 +00:00
-
-### Features
-
-Initial Release
