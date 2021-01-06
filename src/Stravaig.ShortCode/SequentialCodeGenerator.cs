@@ -1,5 +1,3 @@
-using System;
-using System.Linq;
 using Microsoft.Extensions.Options;
 using Stravaig.ShortCode.Internal;
 

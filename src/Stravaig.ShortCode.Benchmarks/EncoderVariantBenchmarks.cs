@@ -5,8 +5,8 @@ namespace Stravaig.ShortCode.Benchmarks
 {
     public class EncoderVariantBenchmarks
     {
-        private ulong[] _codes = new ulong[1024];
-        private int _index = 0;
+        private readonly ulong[] _codes = new ulong[1024];
+        private int _index;
         private Encoder _baselineEncoder = new Encoder(NamedCharacterSpaces.ReducedAmbiguity);
         private Encoder1 _encoder1 = new Encoder1(NamedCharacterSpaces.ReducedAmbiguity);
         private Encoder2 _encoder2 = new Encoder2(NamedCharacterSpaces.ReducedAmbiguity);

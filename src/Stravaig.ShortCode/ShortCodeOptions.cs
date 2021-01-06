@@ -11,7 +11,7 @@ namespace Stravaig.ShortCode
 
         private int _maxLength = AbsoluteMaxLength;
         private int? _fixedLength;
-        private string _characterSpace = Stravaig.ShortCode.NamedCharacterSpaces.ReducedAmbiguity;
+        private string _characterSpace = NamedCharacterSpaces.ReducedAmbiguity;
 
         public string CharacterSpace
         {
