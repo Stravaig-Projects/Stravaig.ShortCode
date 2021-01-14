@@ -135,6 +135,18 @@ jobs:
           commit: ${{ env.GITHUB_SHA }}
           tag: v${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}
           draft: true
+
+      - name: Attach Artefacts to Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "./out/*.nupkg,./out/*.snupkg,LICENSE,contributors.md,README.md,./release-notes/release-notes-${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}.md"
+          replacesArtifacts: false
+          token: ${{ secrets.GITHUB_TOKEN }}
+          omitBody: true
+          omitBodyDuringUpdate: true
+          tag: v${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}
+          draft: true
+
           
       - name: Bump version
         #IF Publishing & Stable release
