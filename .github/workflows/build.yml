@@ -134,7 +134,7 @@ jobs:
           prerelease: ${{ env.STRAVAIG_IS_PREVIEW }}
           commit: ${{ env.GITHUB_SHA }}
           tag: v${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}
-          draft: true
+          draft: false
 
       - name: Attach Artefacts to Release
         uses: ncipollo/release-action@v1
@@ -143,7 +143,6 @@ jobs:
           replacesArtifacts: false
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: v${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}
-          draft: true
 
           
       - name: Bump version
