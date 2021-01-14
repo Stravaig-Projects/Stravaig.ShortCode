@@ -128,7 +128,7 @@ jobs:
         #if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "./out/*.nupkg,./out/*.snupkg,LICENSE,contributors.md,README.md,./release-notes/release-notes-${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}.md"
+          #artifacts: "./out/*.nupkg,./out/*.snupkg,LICENSE,contributors.md,README.md,./release-notes/release-notes-${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}.md"
           token: ${{ secrets.GITHUB_TOKEN }}
           bodyFile: "release-body.md"
           prerelease: ${{ env.STRAVAIG_IS_PREVIEW }}
