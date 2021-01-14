@@ -126,7 +126,7 @@ jobs:
       #       out/**
         
       - name: Mark Release
-        if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
+        #if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
         uses: ncipollo/release-action@v1
         with:
           artifacts: "./out/*.nupkg,./out/*.snupkg,LICENSE,contributors.md,README.md,./release-notes/release-notes-${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}.md"
@@ -139,7 +139,7 @@ jobs:
           
       - name: Bump version
         #IF Publishing & Stable release
-        if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' && env.STRAVAIG_IS_STABLE == 'true' }}
+        #if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' && env.STRAVAIG_IS_STABLE == 'true' }}
         shell: pwsh
         run: ./Bump-Version.ps1 -BumpPatch
 
