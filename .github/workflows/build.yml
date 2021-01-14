@@ -94,13 +94,13 @@ jobs:
       #       dotnet nuget push "$name" --api-key ${{ secrets.STRAVAIG_NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
       #     }
       
-      # - name: List Contributors
-      #   shell: pwsh
-      #   run: ./list-contributors.ps1 -HideAKAs
+      - name: List Contributors
+        shell: pwsh
+        run: ./list-contributors.ps1 -HideAKAs
 
-      # - name: Build Release Notes
-      #   shell: pwsh
-      #   run: ./build-release-notes.ps1
+      - name: Build Release Notes
+        shell: pwsh
+        run: ./build-release-notes.ps1
 
       # - name: Archive Simulated Release Notes
       #   if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'false' }}
