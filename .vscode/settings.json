@@ -1,3 +1,11 @@
 {
-    "restructuredtext.confPath": ""
+    "restructuredtext.confPath": "",
+    "cSpell.words": [
+        "Nuget",
+        "Stravaig",
+        "commitish",
+        "nupkg",
+        "pwsh",
+        "snupkg"
+    ]
 }
