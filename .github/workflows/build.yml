@@ -124,26 +124,50 @@ jobs:
       #       release-notes/release-notes-${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}.md
       #       out/**
         
-      - name: Mark Release
+      - name: Create Release
         #if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
-        uses: ncipollo/release-action@v1
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          #artifacts: "./out/*.nupkg,./out/*.snupkg,LICENSE,contributors.md,README.md,./release-notes/release-notes-${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}.md"
-          token: ${{ secrets.GITHUB_TOKEN }}
-          bodyFile: "release-body.md"
+          tag_name: v${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}
+          release_name: Release of v${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}
           prerelease: ${{ env.STRAVAIG_IS_PREVIEW }}
-          commit: ${{ env.GITHUB_SHA }}
-          tag: v${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}
-          draft: false
+          body_path: "release-body.md"
+          commitish: ${{ env.GITHUB_SHA }}
+          draft: true
 
-      - name: Attach Artefacts to Release
-        uses: ncipollo/release-action@v1
+      - name: Release asset - Contributors
+        #if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          artifacts: "./out/*.nupkg,./out/*.snupkg,LICENSE,contributors.md,README.md,./release-notes/release-notes-${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}.md"
-          replacesArtifacts: false
-          token: ${{ secrets.GITHUB_TOKEN }}
-          tag: v${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          asset_path: ./contributors.md
+          asset_name: contributors.md
+          asset_content_type: text/markdown
 
+
+      - name: Release asset - Release Notes
+        #if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          asset_path: ./release-notes/release-notes-${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}.md
+          asset_name: release-notes-${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}.md
+          asset_content_type: text/markdown
+
+
+          # artifacts: "./out/*.nupkg,./out/*.snupkg,LICENSE,contributors.md,README.md,./release-notes/release-notes-${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}.md"
+          # token: ${{ secrets.GITHUB_TOKEN }}
+          # bodyFile: "release-body.md"
+          # commit: ${{ env.GITHUB_SHA }}
+          
+          # draft: false
           
       - name: Bump version
         #IF Publishing & Stable release
