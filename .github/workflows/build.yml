@@ -190,7 +190,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: ./out/${{ env.STRAVAIG_PROJECT }}.nupkg
+          asset_path: ./out/${{ env.STRAVAIG_PROJECT }}.${{ env.STRAVAIG_PACKAGE_FULL_VERSION}}.nupkg
           asset_name: ${{ env.STRAVAIG_PROJECT }}.${{ env.STRAVAIG_PACKAGE_FULL_VERSION}}.nupkg
           asset_content_type: application/zip
 
@@ -202,7 +202,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: ./out/${{ env.STRAVAIG_PROJECT }}.snupkg
+          asset_path: ./out/${{ env.STRAVAIG_PROJECT }}.${{ env.STRAVAIG_PACKAGE_FULL_VERSION}}.snupkg
           asset_name: ${{ env.STRAVAIG_PROJECT }}.${{ env.STRAVAIG_PACKAGE_FULL_VERSION}}.snupkg
           asset_content_type: application/zip
                     
