@@ -1,17 +1,8 @@
 [CmdletBinding()]
 param
 (
-    [parameter(Mandatory=$true)]
-    [string]$TagName,
-
-    [parameter(Mandatory=$false)]
-    [switch]$IsPrerelease,
-
     [parameter(Mandatory=$false)]
     [switch]$IsDraft,
-
-    [parameter(Mandatory=$true)] # Will use current commit if not supplied
-    [string]$Commitish,
 
     [ValidateScript({Test-Path $_ -PathType Leaf})]
     [parameter(Mandatory=$true)]
@@ -41,6 +32,29 @@ if ([string]::IsNullOrWhiteSpace($Env:GITHUB_TOKEN))
     Write-Error "GITHUB_TOKEN environment variable is missing."
     Exit 1;
 }
+
+if ([string]::IsNullOrWhiteSpace($Env:GITHUB_SHA))
+{
+    Write-Error "GITHUB_SHA is missing."
+    Exit 2;
+}
+$Commitish = $Env:GITHUB_SHA;
+
+if ([string]::IsNullOrWhiteSpace($Env:STRAVAIG_PACKAGE_FULL_VERSION))
+{
+    Write-Error "STRAVAIG_PACKAGE_FULL_VERSION is missing."
+    Exit 3;
+}
+$TagName = "v" + $Env:STRAVAIG_PACKAGE_FULL_VERSION
+
+
+if ([string]::IsNullOrWhiteSpace($Env:STRAVAIG_IS_PREVIEW))
+{
+    Write-Error "STRAVAIG_IS_PREVIEW is missing."
+    Exit 4;
+}
+$IsPrerelease = [System.Convert]::ToBoolean($Env:STRAVAIG_IS_PREVIEW);
+
 
 $ghArgs = "release create `"$TagName`""
 foreach($assetPath in $Assets)

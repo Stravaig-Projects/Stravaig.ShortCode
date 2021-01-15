@@ -130,7 +130,15 @@ jobs:
         shell: pwsh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: './Create-Release.ps1 -IsDraft -TagName "v${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}" -IsPrerelease:$${{ env.STRAVAIG_IS_PREVIEW }} -Commitish $Env:GITHUB_SHA -NotesFile "./release-body.md" -Assets "./out/*.nupkg", "./out/*.snupkg", "LICENSE", "contributors.md", "README.md", "./release-notes/release-notes-${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}.md"'
+        run: |
+          $assets = @();
+          $assets += "./out/*.nupkg"
+          $assets += "./out/*.snupkg"
+          $assets += "LICENSE"
+          $assets += "contributors.md"
+          $assets += "README.md"
+          $assets += "./release-notes/release-notes-${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}.md"
+          ./Create-Release.ps1 -IsDraft -NotesFile "./release-body.md" -Assets $assets
 
       # - name: Create Release
       #   #if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
