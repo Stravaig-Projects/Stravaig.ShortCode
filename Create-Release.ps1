@@ -42,7 +42,27 @@ if ([string]::IsNullOrWhiteSpace($Env:GITHUB_TOKEN))
     Exit 1;
 }
 
-$ghArgs = "release create `"$TagName`" --title `"Release of $TagName`" --target $Commitish --notes-file `"$NotesFile`""
+$ghArgs = "release create `"$TagName`""
+foreach($assetPath in $Assets)
+{
+    $specificAssets = Get-Item $assetPath;
+    foreach($specificAsset in $specificAssets)
+    {
+        if (-not $specificAsset.PSIsContainer)
+        {
+            $fileName = $specificAsset.FullName;
+            $ghArgs += " `"$fileName`""
+        }
+        else 
+        {
+            Write-Verbose "Skipping `"$specificAsset`" as it refers to a directory. Must provide paths to files."
+        }
+    }
+}
+
+
+
+$ghArgs += " --title `"Release of $TagName`" --target $Commitish --notes-file `"$NotesFile`""
 if ($IsDraft)
 {
     $ghArgs += " --draft"
@@ -58,24 +78,3 @@ if ($exitCode -ne 0)
     Exit $exitCode;
 }
 
-foreach($assetPath in $Assets)
-{
-    $specificAssets = Get-Item $assetPath;
-    foreach($specificAsset in $specificAssets)
-    {
-        if (-not $specificAsset.PSIsContainer)
-        {
-            $fileName = $specificAsset.FullName;
-            $ghArgs = "release upload `"$TagName`" `"$fileName`" --clobber"
-            $exitCode = Invoke-GitHub $ghArgs
-            if ($exitCode -ne 0)
-            {
-                Write-Warning "Failed to attach `"$fileName`" to the release."
-            }
-        }
-        else 
-        {
-            Write-Verbose "Skipping `"$specificAsset`" as it refers to a directory. Must provide paths to files."
-        }
-    }
-}
