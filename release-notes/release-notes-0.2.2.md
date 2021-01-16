@@ -1,4 +1,4 @@
-# Full Release Notes
+# Release Notes
 
 ## Version 0.2.2
 
@@ -24,28 +24,3 @@ Date: Saturday, 16 January, 2021 at 14:09:57 +00:00
 * Bump `Microsoft.Extensions.Options` from 3.1.10 to 3.1.11
 * Bump `Microsoft.Extensions.Options.ConfigurationExtensions` from 3.1.10 to 3.1.11
 * Bump `Stravaig.Extensions.Logging.Diagnostics` from 0.3.0 to 0.3.1
-## Version 0.2.1
-
-Date: Wednesday, 6 January, 2021 at 23:33:35 +00:00
-
-### Bugs
-
-* #11: Have sensible defaults & validation on the `ShortCodeOptions`
-
-### Features
-
-* Add ability to take options from the configuration.
-* Add performance optimisations to the encoder.
-
-### Miscellaneous
-
-* Add additional benchmarks.
-* Update contributors script & call from build.
-
-## Version 0.1.0
-
-Date: Friday, 1 January, 2021 at 22:15:52 +00:00
-
-### Features
-
-Initial Release
