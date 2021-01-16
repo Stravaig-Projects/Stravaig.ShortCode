@@ -11,6 +11,9 @@ Date: ???
 ### Miscellaneous
 
 * #19: Fix release process.
+  * Bump SDK version
+  * Create release to PowerShell/GitHub CLI
+  * Release notes now includes a Dependabots section
 
 ### Dependabot
 
