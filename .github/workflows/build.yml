@@ -3,7 +3,6 @@ on:
   push:
     branches: 
       - main
-      - "#19-fix-mark-release"
 
     paths-ignore:
       - 'README.md'
