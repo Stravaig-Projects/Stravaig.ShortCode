@@ -140,108 +140,26 @@ jobs:
           $assets += "./release-notes/release-notes-${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}.md"
           ./Create-Release.ps1 -IsDraft -NotesFile "./release-body.md" -Assets $assets
 
-      # - name: Create Release
-      #   #if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
-      #   id: create_release
-      #   uses: actions/create-release@v1
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   with:
-      #     tag_name: v${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}
-      #     release_name: Release of v${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}
-      #     prerelease: ${{ env.STRAVAIG_IS_PREVIEW }}
-      #     body_path: "release-body.md"
-      #     commitish: ${{ env.GITHUB_SHA }}
-      #     draft: true
-
-      # - name: Release asset - Contributors
-      #   #if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
-      #   uses: actions/upload-release-asset@v1
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   with:
-      #     upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-      #     asset_path: ./contributors.md
-      #     asset_name: contributors.md
-      #     asset_content_type: text/markdown
-
-
-      # - name: Release asset - Release Notes
-      #   #if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
-      #   uses: actions/upload-release-asset@v1
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   with:
-      #     upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-      #     asset_path: ./release-notes/release-notes-${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}.md
-      #     asset_name: release-notes-${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}.md
-      #     asset_content_type: text/markdown
-
-      # - name: Release asset - Read Me
-      #   #if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
-      #   uses: actions/upload-release-asset@v1
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   with:
-      #     upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-      #     asset_path: ./README.md
-      #     asset_name: README.md
-      #     asset_content_type: text/markdown
-
-      # - name: Release asset - License
-      #   #if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
-      #   uses: actions/upload-release-asset@v1
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   with:
-      #     upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-      #     asset_path: ./LICENSE
-      #     asset_name: LICENSE
-      #     asset_content_type: text/plain
-
-      # - name: Release asset - Nuget package
-      #   #if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
-      #   uses: actions/upload-release-asset@v1
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   with:
-      #     upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-      #     asset_path: ./out/${{ env.STRAVAIG_PROJECT }}.${{ env.STRAVAIG_PACKAGE_FULL_VERSION}}.nupkg
-      #     asset_name: ${{ env.STRAVAIG_PROJECT }}.${{ env.STRAVAIG_PACKAGE_FULL_VERSION}}.nupkg
-      #     asset_content_type: application/zip
-
-
-      # - name: Release asset - Nuget symbol package
-      #   #if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
-      #   uses: actions/upload-release-asset@v1
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   with:
-      #     upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-      #     asset_path: ./out/${{ env.STRAVAIG_PROJECT }}.${{ env.STRAVAIG_PACKAGE_FULL_VERSION}}.snupkg
-      #     asset_name: ${{ env.STRAVAIG_PROJECT }}.${{ env.STRAVAIG_PACKAGE_FULL_VERSION}}.snupkg
-      #     asset_content_type: application/zip
-                    
       - name: Bump version
         #IF Publishing & Stable release
         #if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' && env.STRAVAIG_IS_STABLE == 'true' }}
         shell: pwsh
         run: ./Bump-Version.ps1 -BumpPatch
 
-      # - name: Reset WIP release notes
-      #   #IF Publishing & Stable release
-      #   if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' && env.STRAVAIG_IS_STABLE == 'true' }}
-      #   shell: pwsh
-      #   run: ./Reset-WipReleaseNotes.ps1
+      - name: Reset WIP release notes
+        #IF Publishing & Stable release
+        #if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' && env.STRAVAIG_IS_STABLE == 'true' }}
+        shell: pwsh
+        run: ./Reset-WipReleaseNotes.ps1
 
-      # - name: Commit post release updates
-      #   #IF Publishing & Stable release
-      #   if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' && env.STRAVAIG_IS_STABLE == 'true' }}
-      #   uses: EndBug/add-and-commit@v5
-      #   with:
-      #     add: ./contributors.md ./release-notes/** ./version.txt
-      #     author_name: StravaigBot
-      #     author_email: github@stravaig.scot
-      #     message: "[bot] Post v${{ env.STRAVAIG_PACKAGE_FULL_VERSION }} Release & Bump Version updates."
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Commit post release updates
+        #IF Publishing & Stable release
+        #if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' && env.STRAVAIG_IS_STABLE == 'true' }}
+        uses: EndBug/add-and-commit@v5
+        with:
+          add: ./contributors.md ./release-notes/** ./version.txt
+          author_name: StravaigBot
+          author_email: github@stravaig.scot
+          message: "[bot] Post v${{ env.STRAVAIG_PACKAGE_FULL_VERSION }} Release & Bump Version updates."
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
