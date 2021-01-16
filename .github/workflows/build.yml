@@ -70,11 +70,11 @@ jobs:
         with:
           dotnet-version: 3.1.405
 
-      # - name: Build Solution
-      #   run: dotnet build $STRAVAIG_SOLUTION --configuration Release
+      - name: Build Solution
+        run: dotnet build $STRAVAIG_SOLUTION --configuration Release
        
-      # - name: Run Tests
-      #   run: dotnet test src/$STRAVAIG_TESTS/$STRAVAIG_TESTS.csproj --configuration Release --filter TestCategory!=LongStressTest
+      - name: Run Tests
+        run: dotnet test src/$STRAVAIG_TESTS/$STRAVAIG_TESTS.csproj --configuration Release --filter TestCategory!=LongStressTest
        
       - name: Package Preview Release
         if: ${{ env.STRAVAIG_IS_PREVIEW == 'true' }}
@@ -102,28 +102,28 @@ jobs:
         shell: pwsh
         run: ./build-release-notes.ps1
 
-      # - name: Archive Simulated Release Notes
-      #   if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'false' }}
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     name: simulated-release-information
-      #     path: |
-      #       contributors.md
-      #       release-notes/full-release-notes.md
-      #       release-notes/release-notes-${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}.md
-      #       out/**
-      #     retention-days: 7
+      - name: Archive Simulated Release Notes
+        if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'false' }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: simulated-release-information
+          path: |
+            contributors.md
+            release-notes/full-release-notes.md
+            release-notes/release-notes-${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}.md
+            out/**
+          retention-days: 7
 
-      # - name: Archive Release Notes
-      #   if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     name: release-information
-      #     path: |
-      #       contributors.md
-      #       release-notes/full-release-notes.md
-      #       release-notes/release-notes-${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}.md
-      #       out/**
+      - name: Archive Release Notes
+        if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: release-information
+          path: |
+            contributors.md
+            release-notes/full-release-notes.md
+            release-notes/release-notes-${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}.md
+            out/**
 
       - name: Create Release
         #if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
