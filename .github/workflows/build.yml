@@ -84,15 +84,15 @@ jobs:
         if: ${{ env.STRAVAIG_IS_STABLE == 'true' }}
         run: dotnet pack $STRAVAIG_SOLUTION --configuration Release --output ./out --include-symbols --include-source /p:VersionPrefix="$STRAVAIG_PACKAGE_VERSION" -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
 
-      # - name: Push package to NuGet
-      #   if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
-      #   shell: pwsh
-      #   run: |
-      #     Get-ChildItem ./out/*.nupkg | ForEach-Object { 
-      #       $name = $_.FullName; 
-      #       Write-Output "Pushing $name"; 
-      #       dotnet nuget push "$name" --api-key ${{ secrets.STRAVAIG_NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
-      #     }
+      - name: Push package to NuGet
+        if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
+        shell: pwsh
+        run: |
+          Get-ChildItem ./out/*.nupkg | ForEach-Object { 
+            $name = $_.FullName; 
+            Write-Output "Pushing $name"; 
+            dotnet nuget push "$name" --api-key ${{ secrets.STRAVAIG_NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+          }
       
       - name: List Contributors
         shell: pwsh
@@ -126,7 +126,7 @@ jobs:
             out/**
 
       - name: Create Release
-        #if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
+        if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' }}
         shell: pwsh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -142,19 +142,19 @@ jobs:
 
       - name: Bump version
         #IF Publishing & Stable release
-        #if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' && env.STRAVAIG_IS_STABLE == 'true' }}
+        if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' && env.STRAVAIG_IS_STABLE == 'true' }}
         shell: pwsh
         run: ./Bump-Version.ps1 -BumpPatch
 
       - name: Reset WIP release notes
         #IF Publishing & Stable release
-        #if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' && env.STRAVAIG_IS_STABLE == 'true' }}
+        if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' && env.STRAVAIG_IS_STABLE == 'true' }}
         shell: pwsh
         run: ./Reset-WipReleaseNotes.ps1
 
       - name: Commit post release updates
         #IF Publishing & Stable release
-        #if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' && env.STRAVAIG_IS_STABLE == 'true' }}
+        if: ${{ env.STRAVAIG_PUBLISH_TO_NUGET == 'true' && env.STRAVAIG_IS_STABLE == 'true' }}
         uses: EndBug/add-and-commit@v5
         with:
           add: ./contributors.md ./release-notes/** ./version.txt
