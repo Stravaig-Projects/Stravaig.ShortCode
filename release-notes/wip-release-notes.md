@@ -10,6 +10,8 @@ Date: ???
 
 ### Miscellaneous
 
+* Remove "IsDraft" flag from release task in the build.
+
 ### Dependabot
 
 

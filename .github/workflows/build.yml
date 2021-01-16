@@ -137,7 +137,7 @@ jobs:
           $assets += "contributors.md"
           $assets += "README.md"
           $assets += "./release-notes/release-notes-${{ env.STRAVAIG_PACKAGE_FULL_VERSION }}.md"
-          ./Create-Release.ps1 -IsDraft -NotesFile "./release-body.md" -Assets $assets
+          ./Create-Release.ps1 -NotesFile "./release-body.md" -Assets $assets
 
       - name: Bump version
         #IF Publishing & Stable release
