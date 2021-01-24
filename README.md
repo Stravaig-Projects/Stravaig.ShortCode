@@ -34,6 +34,36 @@ You can also install using the package manager.
 
 If you are going to be using extensions for the Microsoft Dependency Injection then you only need to install the `Straviag.ShortCode.DependencyInjection` package in your application entry assembly (the assembly in which you setup the dependency injection for your application) as it has a dependency on `Stravaig.ShortCode` already. In any other assembly in your application that needs to generate short codes, you will typically only need to install the `Stravaig.ShortCode` package.
 
+## Fastest way to get started
+
+There is a `static ShortCode` class that is preconfigures with some _reasonable_ defaults, although they can be overridden if desired.
+
+To get a short code:
+
+```csharp
+// To generate a 7 character random short code
+ShortCode.GenerateRandomShortCode();
+
+// To generate short code of the given length
+ShortCode.GenerateRandomShortCode(int length);
+
+// To generate a 7 character sequential short code
+ShortCode.GenerateSequentialShortCode();
+
+// To generate sequential short code of the given length
+ShortCode.GenerateSequentialShortCode(int length);
+```
+
+There are some configuration methods you can call during your app's startup:
+
+* `ShortCode.SetLength(int)` sets the default length of the short codes that you want, defaults to 7.
+* `ShortCode.SetSequentialSeed(ulong)` sets the starting point for the sequential codes, otherwise it will reset to zero every time your app starts.
+* `ShortCode.SetCharacterSpace(string)` sets the characters that can be used in a short code, defaults to `NamedCharacterSpaces.LettersAndDigits` which is a list of unaccented Latin letters in lower and upper case and the digits zero to nine.
+* `ShortCode.Use<TGenerator>()` sets the random generator to use. `TGenerator` can be:
+  - `GuidCodeGenerator`: The code is a hashed form of a GUID
+  - `RandomCodeGenerator`: The code is generated from the `Random` class.
+  - `CrytographicallyRandomCodeGenerator`: The code is generated using a cryptographic strength random number generator.
+
 ## Setting up Short Codes with Microsoft's Dependency Injection
 
 If web apps this will be in your `Startup` class, somewhere in the `ConfigureServices` method. Otherwise it will go wherever you are adding your dependency to the service collection.
