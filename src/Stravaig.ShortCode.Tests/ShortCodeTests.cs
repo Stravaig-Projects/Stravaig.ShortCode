@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Runtime.CompilerServices;
 using NUnit.Framework;
 using Shouldly;
+using Stravaig.ShortCode.Tests.__helpers;
 
 namespace Stravaig.ShortCode.Tests
 {
@@ -72,7 +72,40 @@ namespace Stravaig.ShortCode.Tests
             var sequentialCode = ShortCode.GenerateSequentialShortCode();
             sequentialCode.ShouldBe(value);
         }
+
+        [Test]
+        public void Use_SetsTheInternalGeneratorToRandom()
+        {
+            ShortCode.Use<RandomCodeGenerator>();
+            dynamic shortCode = new StaticJailbreak(typeof(ShortCode));
+            IShortCodeGenerator generator = (IShortCodeGenerator)shortCode._randomGenerator;
+
+            generator.ShouldNotBeNull();
+            generator.ShouldBeOfType(typeof(RandomCodeGenerator));
+        }
         
+        [Test]
+        public void Use_SetsTheInternalGeneratorToGuid()
+        {
+            ShortCode.Use<GuidCodeGenerator>();
+            dynamic shortCode = new StaticJailbreak(typeof(ShortCode));
+            IShortCodeGenerator generator = (IShortCodeGenerator)shortCode._randomGenerator;
+
+            generator.ShouldNotBeNull();
+            generator.ShouldBeOfType(typeof(GuidCodeGenerator));
+        }
+
+        [Test]
+        public void Use_SetsTheInternalGeneratorToCryptographicallyRandom()
+        {
+            ShortCode.Use<CryptographicallyRandomCodeGenerator>();
+            dynamic shortCode = new StaticJailbreak(typeof(ShortCode));
+            IShortCodeGenerator generator = (IShortCodeGenerator)shortCode._randomGenerator;
+
+            generator.ShouldNotBeNull();
+            generator.ShouldBeOfType(typeof(CryptographicallyRandomCodeGenerator));
+        }
+
         private static IEnumerable<int> Lengths()
         {
             for (int i = 1; i <= 9; i++)
