@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using NUnit.Framework;
 using Shouldly;
 using Stravaig.ShortCode.Tests.__helpers;
