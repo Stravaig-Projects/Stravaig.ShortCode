@@ -40,7 +40,7 @@ namespace Stravaig.ShortCode
         
         private void WarnOnInconsistentOptions()
         {
-            if (_options.FixedLength.HasValue && _options.FixedLength.Value > _encoder.MaxLength())
+            if (_options.Pattern.Length == 0 && _options.FixedLength.HasValue && _options.FixedLength.Value > _encoder.MaxLength())
                 _logger.LogWarning("The Short Code generator will always produce codes with padding because the Fixed Length ({fixedLength}) option is greater than maximum length the encoder can generate ({encoderMaxLength}).",
                     _options.FixedLength.Value,
                     _encoder.MaxLength());

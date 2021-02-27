@@ -5,6 +5,25 @@ namespace Stravaig.ShortCode
 {
     public class ShortCodeOptions
     {
+        public class PatternOptions
+        {
+            private string _characterSpace;
+            public PatternType Type { get; set; }
+
+            public string CharacterSpace
+            {
+                get => _characterSpace;
+                set
+                {
+                    ValidateCharacterSpace(value);
+                    _characterSpace = value;
+                }
+            }
+            
+            public int Length { get; set; }
+            
+            public string FixedString { get; set; }
+        }
         private const int AbsoluteMinLength = 1;
         private const int AbsoluteMaxLength = 64;
         private const int CharacterSpaceMinLength = 2;
@@ -18,16 +37,21 @@ namespace Stravaig.ShortCode
             get => _characterSpace;
             set
             {
-                if (string.IsNullOrWhiteSpace(value))
-                    throw new ArgumentException(
-                        "The value cannot be, null, Empty or contain whitespace.",
-                        nameof(CharacterSpace));
-                if (value.Length < CharacterSpaceMinLength)
-                    throw new ArgumentException(
-                        $"The value must contain at least {CharacterSpaceMinLength} characters.",
-                        nameof(CharacterSpace));
+                ValidateCharacterSpace(value);
                 _characterSpace = value;
             }
+        }
+
+        private static void ValidateCharacterSpace(string value)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+                throw new ArgumentException(
+                    "The value cannot be, null, Empty or contain whitespace.",
+                    nameof(CharacterSpace));
+            if (value.Length < CharacterSpaceMinLength)
+                throw new ArgumentException(
+                    $"The value must contain at least {CharacterSpaceMinLength} characters.",
+                    nameof(CharacterSpace));
         }
 
         public int MaxLength
@@ -57,5 +81,7 @@ namespace Stravaig.ShortCode
         }
 
         public Dictionary<string, object> Generator { get; set; } = new Dictionary<string, object>();
+
+        public PatternOptions[] Pattern { get; set; } = Array.Empty<PatternOptions>();
     }
 }

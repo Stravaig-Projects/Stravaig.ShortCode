@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -39,7 +41,10 @@ namespace Stravaig.ShortCode.DependencyInjection
             services.AddSingleton<IEncoder>(p =>
             {
                 var options = p.GetRequiredService<IOptions<ShortCodeOptions>>();
-                return new Encoder(options.Value.CharacterSpace);
+                if (options.Value.Pattern.Length == 0)
+                    return new Encoder(options.Value.CharacterSpace);
+                return new PatternedEncoder(options.Value.Pattern
+                    .Select(pat => pat.ToPatternPart()));
             });
             services.AddSingleton<IShortCodeGenerator, TGenerator>();
             services.AddSingleton<IShortCodeFactory, ShortCodeFactory>();
