@@ -8,8 +8,13 @@ Date: ???
 
 ### Features
 
+- #33: Have patterned codes.
+
 ### Miscellaneous
 
 ### Dependabot
 
+- Bump Microsoft.Extensions.DependencyInjection.Abstractions from 3.1.11 to 3.1.12
+- Bump Microsoft.NET.Test.Sdk from 16.8.3 to 16.9.1- Bump NUnit from 3.13.0 to 3.13.1
+- Bump Stravaig.Extensions.Logging.Diagnostics from 0.3.1 to 0.3.2
 
