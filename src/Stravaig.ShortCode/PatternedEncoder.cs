@@ -53,11 +53,6 @@ namespace Stravaig.ShortCode
             return fullCode;
         }
 
-        public ulong RangeRequired(int numChars)
-        {
-            throw new NotImplementedException();
-        }
-
         public int MaxLength()
         {
             throw new NotImplementedException();
