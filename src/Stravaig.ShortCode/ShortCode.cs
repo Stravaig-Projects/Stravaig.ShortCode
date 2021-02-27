@@ -39,6 +39,12 @@ namespace Stravaig.ShortCode
             return _encoder.Convert(code, length ?? _defaultLength);
         }
 
+        public static string GeneratePatternedShortCode()
+        {
+            ulong code = _randomGenerator.GetNextCode();
+            return _patternedEncoder.Convert(code);
+        }
+
         public static void SetSequentialSeed(ulong seed)
         {
             _sequentialCodeGenerator = new SequentialCodeGenerator(seed);

@@ -56,14 +56,6 @@ namespace Stravaig.ShortCode
         public int MaxLength()
         {
             throw new NotImplementedException();
-            int result = 0;
-            ulong remainingRange = ulong.MaxValue; 
-            foreach (var part in _parts)
-            {
-                result += (int)(Math.Log(remainingRange) / Math.Log(part.Length));
-            }
-
-            return result;
         }
 
         public string NamedCharacterSpace =>
