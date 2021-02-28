@@ -6,6 +6,7 @@ namespace Stravaig.ShortCode.Internal
     {
         private const int CharacterSpaceMinLength = 2;
 
+        // ReSharper disable once ParameterOnlyUsedForPreconditionCheck.Global
         internal static void ValidateCharacterSpace(this string characterSpace)
         {
             if (string.IsNullOrWhiteSpace(characterSpace))
