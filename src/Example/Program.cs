@@ -13,7 +13,15 @@ namespace Example
             var config = BuildConfig();
 
             ServiceCollection services = new ServiceCollection();
-            services.AddShortCodeGenerator<SequentialCodeGenerator>(config);
+            services.AddShortCodeGenerator<SequentialCodeGenerator>(options =>
+            {
+                options.Pattern = new[]
+                {
+                    new PatternOptions(NamedCharacterSpaces.UpperLatinLetters, 3),
+                    new PatternOptions("-"),
+                    new PatternOptions(NamedCharacterSpaces.Digits, 3),
+                };
+            });
 
             ServiceProvider provider = services.BuildServiceProvider();
             var factory = provider.GetRequiredService<IShortCodeFactory>();

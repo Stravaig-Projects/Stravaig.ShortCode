@@ -1,32 +1,13 @@
 using System;
 using System.Collections.Generic;
+using Stravaig.ShortCode.Internal;
 
 namespace Stravaig.ShortCode
 {
     public class ShortCodeOptions
     {
-        public class PatternOptions
-        {
-            private string _characterSpace;
-            public PatternType Type { get; set; }
-
-            public string CharacterSpace
-            {
-                get => _characterSpace;
-                set
-                {
-                    ValidateCharacterSpace(value);
-                    _characterSpace = value;
-                }
-            }
-            
-            public int Length { get; set; }
-            
-            public string FixedString { get; set; }
-        }
         private const int AbsoluteMinLength = 1;
         private const int AbsoluteMaxLength = 64;
-        private const int CharacterSpaceMinLength = 2;
 
         private int _maxLength = AbsoluteMaxLength;
         private int? _fixedLength;
@@ -37,22 +18,12 @@ namespace Stravaig.ShortCode
             get => _characterSpace;
             set
             {
-                ValidateCharacterSpace(value);
+                value.ValidateCharacterSpace();
                 _characterSpace = value;
             }
         }
 
-        private static void ValidateCharacterSpace(string value)
-        {
-            if (string.IsNullOrWhiteSpace(value))
-                throw new ArgumentException(
-                    "The value cannot be, null, Empty or contain whitespace.",
-                    nameof(CharacterSpace));
-            if (value.Length < CharacterSpaceMinLength)
-                throw new ArgumentException(
-                    $"The value must contain at least {CharacterSpaceMinLength} characters.",
-                    nameof(CharacterSpace));
-        }
+
 
         public int MaxLength
         {
