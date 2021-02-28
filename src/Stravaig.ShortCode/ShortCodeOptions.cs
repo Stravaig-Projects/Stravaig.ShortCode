@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Stravaig.ShortCode.Internal;
 
 namespace Stravaig.ShortCode
 {
@@ -7,7 +8,6 @@ namespace Stravaig.ShortCode
     {
         private const int AbsoluteMinLength = 1;
         private const int AbsoluteMaxLength = 64;
-        private const int CharacterSpaceMinLength = 2;
 
         private int _maxLength = AbsoluteMaxLength;
         private int? _fixedLength;
@@ -18,17 +18,12 @@ namespace Stravaig.ShortCode
             get => _characterSpace;
             set
             {
-                if (string.IsNullOrWhiteSpace(value))
-                    throw new ArgumentException(
-                        "The value cannot be, null, Empty or contain whitespace.",
-                        nameof(CharacterSpace));
-                if (value.Length < CharacterSpaceMinLength)
-                    throw new ArgumentException(
-                        $"The value must contain at least {CharacterSpaceMinLength} characters.",
-                        nameof(CharacterSpace));
+                value.ValidateCharacterSpace();
                 _characterSpace = value;
             }
         }
+
+
 
         public int MaxLength
         {
@@ -57,5 +52,7 @@ namespace Stravaig.ShortCode
         }
 
         public Dictionary<string, object> Generator { get; set; } = new Dictionary<string, object>();
+
+        public PatternOptions[] Pattern { get; set; } = Array.Empty<PatternOptions>();
     }
 }

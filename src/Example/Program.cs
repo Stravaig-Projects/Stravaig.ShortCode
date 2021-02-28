@@ -14,6 +14,16 @@ namespace Example
 
             ServiceCollection services = new ServiceCollection();
             services.AddShortCodeGenerator<SequentialCodeGenerator>(config);
+            // Alternative - Build the options in code.
+            // services.AddShortCodeGenerator<SequentialCodeGenerator>(options =>
+            // {
+            //     options.Pattern = new[]
+            //     {
+            //         new PatternOptions(NamedCharacterSpaces.UpperLatinLetters, 3),
+            //         new PatternOptions("-"),
+            //         new PatternOptions(NamedCharacterSpaces.Digits, 3),
+            //     };
+            // });
 
             ServiceProvider provider = services.BuildServiceProvider();
             var factory = provider.GetRequiredService<IShortCodeFactory>();

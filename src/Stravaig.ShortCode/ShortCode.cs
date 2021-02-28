@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Stravaig.ShortCode
 {
@@ -6,6 +7,7 @@ namespace Stravaig.ShortCode
     {
         private static int _defaultLength;
         private static Encoder _encoder;
+        private static PatternedEncoder _patternedEncoder;
         private static SequentialCodeGenerator _sequentialCodeGenerator;
         private static IShortCodeGenerator _randomGenerator;
 
@@ -15,6 +17,14 @@ namespace Stravaig.ShortCode
             _encoder = new Encoder(NamedCharacterSpaces.LettersAndDigits);
             _sequentialCodeGenerator = new SequentialCodeGenerator();
             _randomGenerator = new CryptographicallyRandomCodeGenerator();
+            _patternedEncoder = new PatternedEncoder(new[]
+            {
+                new PatternPart(NamedCharacterSpaces.ReducedAmbiguity, 3),
+                new PatternPart("-"),
+                new PatternPart(NamedCharacterSpaces.ReducedAmbiguity, 3),
+                new PatternPart("-"),
+                new PatternPart(NamedCharacterSpaces.ReducedAmbiguity, 3),
+            });
         }
         
         public static string GenerateSequentialShortCode(int? length = null)
@@ -27,6 +37,12 @@ namespace Stravaig.ShortCode
         {
             ulong code = _randomGenerator.GetNextCode();
             return _encoder.Convert(code, length ?? _defaultLength);
+        }
+
+        public static string GeneratePatternedShortCode()
+        {
+            ulong code = _randomGenerator.GetNextCode();
+            return _patternedEncoder.Convert(code);
         }
 
         public static void SetSequentialSeed(ulong seed)
@@ -50,6 +66,11 @@ namespace Stravaig.ShortCode
         public static void Use<TGenerator>() where TGenerator : IShortCodeGenerator, new()
         {
             _randomGenerator = new TGenerator();
+        }
+
+        public static void SetPattern(IEnumerable<PatternPart> patternParts)
+        {
+            _patternedEncoder = new PatternedEncoder(patternParts);
         }
     }
 }
