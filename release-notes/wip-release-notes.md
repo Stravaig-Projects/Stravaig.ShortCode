@@ -20,5 +20,5 @@ Date: ???
 - Bump Microsoft.NET.Test.Sdk from 16.8.3 to 16.9.1
 - Bump NUnit from 3.13.0 to 3.13.2
 - Bump Moq from 4.16.0 to 4.16.1
-- Bump Stravaig.Extensions.Logging.Diagnostics from 0.3.1 to 0.3.2
+- Bump Stravaig.Extensions.Logging.Diagnostics from 0.3.1 to 0.4.2
 
