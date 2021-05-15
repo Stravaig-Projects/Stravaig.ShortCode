@@ -52,10 +52,6 @@ ShortCode.GenerateSequentialShortCode();
 
 // To generate sequential short code of the given length
 ShortCode.GenerateSequentialShortCode(int length);
-
-// To generate a patterned short code
-// by default in the format XXX-XXX-XXX
-ShortCode.GeneratePatternedShortCode();
 ```
 
 There are some configuration methods you can call during your app's startup:
@@ -67,15 +63,6 @@ There are some configuration methods you can call during your app's startup:
   - `GuidCodeGenerator`: The code is a hashed form of a GUID
   - `RandomCodeGenerator`: The code is generated from the `Random` class.
   - `CrytographicallyRandomCodeGenerator`: The code is generated using a cryptographic strength random number generator.
-* `ShortCode.SetPattern(IEnumerable<PatternPart> parts)`: Sets the pattern using the given parts. (See below)
-
-## Pattern Parts
-
-If you are using patterned short codes then you can define the pattern with a collection of `PatternPart`. There are two types of pattern part, a `Fixed` part, which consists of a fixed string; and, a `EncodeIntoCharacterSpace` type, which is part of the encoded short code.
-
-To create the encoding part: `new PatternPart(string characterSpace, int length)`. The character space is a string containing the valid characters that a code can contain. It must be made up of unique characters. The `length` is the length of the encoded sequence.
-
-To create the fixed part: `new PatternPart(string fixedChars)`. Where `fixedChars` is the fixed string that is used to separate parts of the code.
 
 ## Setting up Short Codes with Microsoft's Dependency Injection
 
@@ -156,37 +143,9 @@ In the appsettings.json file:
 }
 ```
 
-If you prefer to use a patterned short code generator the appsettings.json will look something like this:
-
-```json
-{
-  "Stravaig": {
-    "ShortCode": {
-      "Pattern":[{
-        "Type": "EncodeIntoCharacterSpace",
-        "CharacterSpace": "0123456789QWERTYPLKJHGFDSAZXCVBNM",
-        "Length": 4
-      },{
-        "Type": "Fixed",
-        "FixedString": "-"
-      },{
-        "Type": "EncodeIntoCharacterSpace",
-        "CharacterSpace": "0123456789QWERTYPLKJHGFDSAZXCVBNM",
-        "Length": 4
-      }],
-      "Generator": {
-        "Seed": 12345
-      }
-    }
-  }
-}
-```
-
-Note, that when the configuration contains a pattern it overrides any general specification.
-
 ## Using the IShortCodeFactory
 
 To get a short code, the `IShortCodeFactory` interface exposes two methods for to create short codes.
 
 * `GetNextCode()` will simply get the next code.
-* `GetCodes(int number)` will return the `number` of codes specified as an `IEnumerable<string>`
+* `GetCodes(int)` will return the number of codes specified as an `IEnumerable<string>`

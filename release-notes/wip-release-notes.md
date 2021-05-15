@@ -8,8 +8,6 @@ Date: ???
 
 ### Features
 
-- #33: Have patterned codes.
-
 ### Miscellaneous
 
 ### Dependabot

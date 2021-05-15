@@ -28,6 +28,11 @@ namespace Stravaig.ShortCode.Benchmarks.Variants
             return new String(resultChars, 0, index);
         }
 
+        public ulong RangeRequired(int numChars)
+        {
+            return (ulong)Math.Pow(_characterSpace.Length, numChars);
+        }
+
         public int MaxLength()
         {
             return (int)(Math.Log(ulong.MaxValue) / Math.Log(_characterSpace.Length));

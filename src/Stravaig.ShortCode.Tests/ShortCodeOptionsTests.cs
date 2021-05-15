@@ -29,7 +29,7 @@ namespace Stravaig.ShortCode.Tests
                 new ShortCodeOptions()
                 {
                     CharacterSpace = value,
-                }).ParamName.ShouldBe("CharacterSpace", StringCompareShould.IgnoreCase);
+                }).ParamName.ShouldBe("CharacterSpace");
         }
         
         [Test]

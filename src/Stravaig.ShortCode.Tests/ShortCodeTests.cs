@@ -105,32 +105,6 @@ namespace Stravaig.ShortCode.Tests
             generator.ShouldBeOfType(typeof(CryptographicallyRandomCodeGenerator));
         }
 
-        [Test]
-        public void GeneratePatternedShortCode_GetsAPatternedShortCode()
-        {
-            var shortCode = ShortCode.GeneratePatternedShortCode();
-            Console.WriteLine(shortCode);
-            shortCode.ShouldNotBeNull();
-            shortCode.ShouldMatch(@"\w\w\w-\w\w\w-\w\w\w");
-        }
-
-        [Test]
-        public void SetPattern_ChangesThePattern()
-        {
-            ShortCode.SetPattern(new[]
-            {
-                new PatternPart(NamedCharacterSpaces.UpperLatinLetters, 2),
-                new PatternPart("-"),
-                new PatternPart(NamedCharacterSpaces.Digits, 4),
-                new PatternPart("-"),
-                new PatternPart(NamedCharacterSpaces.LowerLatinLetters, 2)
-            });
-            var shortCode = ShortCode.GeneratePatternedShortCode();
-            Console.WriteLine(shortCode);
-            shortCode.ShouldNotBeNull();
-            shortCode.ShouldMatch(@"[A-Z]{2}-[0-9]{4}-[a-z]{2}");
-        }
-        
         private static IEnumerable<int> Lengths()
         {
             for (int i = 1; i <= 9; i++)

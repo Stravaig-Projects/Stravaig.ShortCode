@@ -26,6 +26,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "__Documenation", "__Documen
 		..\release-notes\wip-release-notes.md = ..\release-notes\wip-release-notes.md
 		..\LICENSE = ..\LICENSE
 		..\release-notes\full-release-notes.md = ..\release-notes\full-release-notes.md
+		..\version.txt = ..\version.txt
 		..\contributors.md = ..\contributors.md
 	EndProjectSection
 EndProject

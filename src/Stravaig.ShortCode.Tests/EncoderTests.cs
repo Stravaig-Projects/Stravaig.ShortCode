@@ -25,6 +25,19 @@ namespace Stravaig.ShortCode.Tests
             ex.Message.ShouldStartWith("Value cannot have a single character.");
         }
         
+        [TestCase(1, NamedCharacterSpaces.Digits, ExpectedResult = (ulong)10)]
+        [TestCase(2, NamedCharacterSpaces.Digits, ExpectedResult = (ulong)100)]
+        [TestCase(1, NamedCharacterSpaces.LowerLatinLetters, ExpectedResult = (ulong)26)]
+        [TestCase(2, NamedCharacterSpaces.LowerLatinLetters, ExpectedResult = (ulong)676)]
+        [TestCase(3, NamedCharacterSpaces.LatinLetters, ExpectedResult = (ulong)140608)]
+        [TestCase(4, NamedCharacterSpaces.LettersAndDigits, ExpectedResult = (ulong)14776336)]
+        [TestCase(5, NamedCharacterSpaces.LettersAndDigits, ExpectedResult = (ulong)916132832)]
+        public ulong RangeRequiredReturnsGoodValueForCharacterSpace(int numChars, string charSpace)
+        {
+            var characterSpace = new Encoder(charSpace);
+            return characterSpace.RangeRequired(numChars);
+        }
+
         [TestCase(NamedCharacterSpaces.LettersAndDigits, ExpectedResult = 10)]
         [TestCase(NamedCharacterSpaces.Digits, ExpectedResult = 19)]
         public int MaxLengthTests(string charSpace)
