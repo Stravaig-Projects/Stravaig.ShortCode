@@ -11,7 +11,7 @@ $content = @(
 "",
 "### Miscellaneous",
 "",
-"### Dependabot"
+"### Dependencies"
 "",
 ""
 )

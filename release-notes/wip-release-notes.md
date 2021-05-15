@@ -4,13 +4,7 @@
 
 Date: ???
 
-### Bugs
-
-### Features
-
-### Miscellaneous
-
-### Dependabot
+### Dependencies
 
 - Bump Microsoft.Extensions.Configuration.Json from 3.1.11 to 3.1.15
 - Bump Microsoft.Extensions.DependencyInjection.Abstractions from 3.1.11 to 3.1.15
