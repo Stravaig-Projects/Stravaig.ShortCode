@@ -4,8 +4,6 @@
 
 Date: Sunday, 24 January, 2021 at 16:24:43 +00:00
 
-### Bugs
-
 ### Features
 
 * #22: Static methods for accessing Short codes more easily
@@ -21,10 +19,6 @@ Date: Sunday, 24 January, 2021 at 16:24:43 +00:00
 ## Version 0.2.2
 
 Date: Saturday, 16 January, 2021 at 14:09:57 +00:00
-
-### Bugs
-
-### Features
 
 ### Miscellaneous
 
