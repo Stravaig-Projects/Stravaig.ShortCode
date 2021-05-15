@@ -13,7 +13,7 @@ Date: ???
 ### Dependabot
 
 - Bump Microsoft.Extensions.Configuration.Json from 3.1.11 to 3.1.13
-- Bump Microsoft.Extensions.DependencyInjection.Abstractions from 3.1.11 to 3.1.13
+- Bump Microsoft.Extensions.DependencyInjection.Abstractions from 3.1.11 to 3.1.15
 - Bump Microsoft.Extensions.Logging.Abstractions from 3.1.11 to 3.1.13
 - Bump Microsoft.Extensions.Options from 3.1.11 to 3.1.13
 - Bump Microsoft.Extensions.Options.ConfigurationExtensions from 3.1.11 to 3.1.13
