@@ -1,8 +1,7 @@
-using System;
 using System.Collections.Generic;
 using NUnit.Framework;
 using Shouldly;
-using Stravaig.ShortCode.Tests.__helpers;
+using Stravaig.Jailbreak;
 
 namespace Stravaig.ShortCode.Tests
 {
@@ -12,9 +11,8 @@ namespace Stravaig.ShortCode.Tests
         [SetUp]
         public void Reset()
         {
-            var staticType = typeof(ShortCode);
-            var constructor = staticType.TypeInitializer ?? throw new InvalidOperationException($"{nameof(ShortCode)} is expected to have a static constructor.");
-            constructor.Invoke(null, Array.Empty<object>());
+            dynamic shortCode = typeof(ShortCode).Jailbreak();
+            shortCode.Init();
         }
 
         [Test]
@@ -76,7 +74,7 @@ namespace Stravaig.ShortCode.Tests
         public void Use_SetsTheInternalGeneratorToRandom()
         {
             ShortCode.Use<RandomCodeGenerator>();
-            dynamic shortCode = new StaticJailbreak(typeof(ShortCode));
+            dynamic shortCode = typeof(ShortCode).Jailbreak();
             IShortCodeGenerator generator = (IShortCodeGenerator)shortCode._randomGenerator;
 
             generator.ShouldNotBeNull();
@@ -87,7 +85,7 @@ namespace Stravaig.ShortCode.Tests
         public void Use_SetsTheInternalGeneratorToGuid()
         {
             ShortCode.Use<GuidCodeGenerator>();
-            dynamic shortCode = new StaticJailbreak(typeof(ShortCode));
+            dynamic shortCode = typeof(ShortCode).Jailbreak();
             IShortCodeGenerator generator = (IShortCodeGenerator)shortCode._randomGenerator;
 
             generator.ShouldNotBeNull();
@@ -98,7 +96,7 @@ namespace Stravaig.ShortCode.Tests
         public void Use_SetsTheInternalGeneratorToCryptographicallyRandom()
         {
             ShortCode.Use<CryptographicallyRandomCodeGenerator>();
-            dynamic shortCode = new StaticJailbreak(typeof(ShortCode));
+            dynamic shortCode = typeof(ShortCode).Jailbreak();
             IShortCodeGenerator generator = (IShortCodeGenerator)shortCode._randomGenerator;
 
             generator.ShouldNotBeNull();

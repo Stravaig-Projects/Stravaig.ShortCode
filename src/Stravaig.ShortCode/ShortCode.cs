@@ -11,6 +11,11 @@ namespace Stravaig.ShortCode
 
         static ShortCode()
         {
+            Init();
+        }
+
+        private static void Init()
+        {
             _defaultLength = 7;
             _encoder = new Encoder(NamedCharacterSpaces.LettersAndDigits);
             _sequentialCodeGenerator = new SequentialCodeGenerator();
