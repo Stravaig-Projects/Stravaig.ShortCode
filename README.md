@@ -12,7 +12,9 @@ Provides a short code generator that can be used to create small user accessible
 
 ## Package overview
 
-There are two packages. The `Stravaig.ShortCode` package contains the classes needed to generate short codes. The `Stravaig.ShortCode.DependencyInjection` package contains extensions for the Microsoft Dependency Injection framework that comes with .NET Core / .NET 5.0 to makes setting up in your application easier.
+There are two packages. 
+* The `Stravaig.ShortCode` package contains the classes needed to generate short codes.
+* The `Stravaig.ShortCode.DependencyInjection` package contains extensions for the Microsoft Dependency Injection framework that comes with .NET Core / .NET 5.0 to makes setting up in your application easier.
 
 ## Installing the packages
 

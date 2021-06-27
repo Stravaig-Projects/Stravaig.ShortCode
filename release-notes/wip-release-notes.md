@@ -4,11 +4,9 @@
 
 Date: ???
 
-### Bugs
-
-### Features
-
 ### Miscellaneous
+
+- Prepare for V1 release
 
 ### Dependencies
 
