@@ -12,7 +12,7 @@
         <Title>Stravaig Short Code</Title>
         <Authors>Colin Angus Mackay</Authors>
         <Copyright>©2020-$(StravaigCopyrightYear) Stravaig Projects. See licence for more information.</Copyright>
-        <PackageProjectUrl>https://github.com/Stravaig-Projects/Stravaig.ShortCode/blob/$(StravaigGitHubCommit)/README.md</PackageProjectUrl>
+        <PackageProjectUrl>https://github.com/$(GITHUB_REPOSITORY)/blob/$(StravaigGitHubCommit)/README.md</PackageProjectUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <RepositoryUrl>https://github.com/Stravaig-Projects/Stravaig.ShortCode</RepositoryUrl>
         <PackageIcon>stravaig-icon.png</PackageIcon>
