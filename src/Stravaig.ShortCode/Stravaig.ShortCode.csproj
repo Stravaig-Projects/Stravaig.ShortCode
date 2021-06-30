@@ -3,8 +3,8 @@
     <PropertyGroup>
         <StravaigBuildTime>$([System.DateTime]::Now.ToString("dddd, d MMMM yyyy 'at' HH:mm:ss zzzz"))</StravaigBuildTime>
         <StravaigCopyrightYear>$([System.DateTime]::Now.ToString("yyyy"))</StravaigCopyrightYear>
-        <StravaigGitHubCommit>$($ENV:GITHUB_SHA)</StravaigGitHubCommit>
-        <StravaigWorkflowUrl>$($ENV:GITHUB_SERVER_URL)/$($ENV:GITHUB_REPOSITORY)/actions/runs/$($ENV:GITHUB_RUN_ID)</StravaigWorkflowUrl>
+        <StravaigGitHubCommit>$(GITHUB_SHA)</StravaigGitHubCommit>
+        <StravaigWorkflowUrl>$(GITHUB_SERVER_URL)/$(GITHUB_REPOSITORY)/actions/runs/$(GITHUB_RUN_ID)</StravaigWorkflowUrl>
     </PropertyGroup>
     
     <PropertyGroup>
