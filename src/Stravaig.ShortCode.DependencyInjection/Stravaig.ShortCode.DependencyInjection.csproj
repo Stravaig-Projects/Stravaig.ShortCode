@@ -1,7 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <StravaigBuildTime>$([System.DateTime]::Now.ToString("dddd, d MMMM yyyy 'at' HH:mm:ss zzz"))</StravaigBuildTime>
+        <StravaigBuildTime>$([System.DateTime]::Now.ToString("dddd, d MMMM yyyy 'at' HH:mm:ss zzzz"))</StravaigBuildTime>
         <StravaigCopyrightYear>$([System.DateTime]::Now.ToString("yyyy"))</StravaigCopyrightYear>
+        <StravaigGitHubCommit>$($ENV:GITHUB_SHA)</StravaigGitHubCommit>
+        <StravaigWorkflowUrl>$($ENV:GITHUB_SERVER_URL)/$($ENV:GITHUB_REPOSITORY)/actions/runs/$($ENV:GITHUB_RUN_ID)</StravaigWorkflowUrl>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -9,14 +11,16 @@
         <Title>Stravaig Short Code</Title>
         <Authors>Colin Angus Mackay</Authors>
         <Copyright>©2020-$(StravaigCopyrightYear) Stravaig Projects. See licence for more information.</Copyright>
-        <PackageProjectUrl>https://github.com/Stravaig-Projects/Stravaig.ShortCode/blob/main/README.md</PackageProjectUrl>
+        <PackageProjectUrl>https://github.com/Stravaig-Projects/Stravaig.ShortCode/blob/$(StravaigGitHubCommit)/README.md</PackageProjectUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <RepositoryUrl>https://github.com/Stravaig-Projects/Stravaig.ShortCode</RepositoryUrl>
         <PackageIcon>stravaig-icon.png</PackageIcon>
         <PackageTags>random short-code code</PackageTags>
         <Description>Extensions for the Microsoft's Dependency Injection that injects an IShortCodeFactory into your application.
 
-Built on $(StravaigBuildTime).</Description>
+Built on $(StravaigBuildTime).
+Build run details at: $(StravaigWorkflowUrl)
+        </Description>
     </PropertyGroup>
 
     <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
