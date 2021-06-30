@@ -14,7 +14,7 @@
         <Copyright>©2020-$(StravaigCopyrightYear) Stravaig Projects. See licence for more information.</Copyright>
         <PackageProjectUrl>https://github.com/$(GITHUB_REPOSITORY)/blob/$(StravaigGitHubCommit)/README.md</PackageProjectUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <RepositoryUrl>https://github.com/Stravaig-Projects/Stravaig.ShortCode</RepositoryUrl>
+        <RepositoryUrl>https://github.com/$(GITHUB_REPOSITORY)</RepositoryUrl>
         <PackageIcon>stravaig-icon.png</PackageIcon>
         <PackageTags>random short-code code</PackageTags>
         <Description>A set of short code generators.
