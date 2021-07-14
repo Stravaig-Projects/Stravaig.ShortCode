@@ -25,12 +25,12 @@ Build run details at: $(StravaigWorkflowUrl)
 
     <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
       <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.16" />
-      <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="3.1.16" />
+      <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="3.1.17" />
     </ItemGroup>
 
     <ItemGroup Condition=" '$(TargetFramework)' == 'net5.0' ">
         <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
-        <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="5.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="3.1.17" />
     </ItemGroup>
 
     <ItemGroup>
