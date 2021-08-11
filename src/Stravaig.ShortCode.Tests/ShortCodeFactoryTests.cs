@@ -56,11 +56,12 @@ namespace Stravaig.ShortCode.Tests
             };
             var encoder = new Encoder(options.CharacterSpace);
             _ = new ShortCodeFactory(new Mock<IShortCodeGenerator>().Object, encoder, options, logger);
-            
-            logger.Logs.Count.ShouldBe(1);
-            Console.WriteLine(logger.Logs[0].FormattedMessage);
-            logger.Logs[0].LogLevel.ShouldBe(LogLevel.Warning);
-            logger.Logs[0].FormattedMessage.ShouldStartWith("The Short Code generator will always produce codes with padding");
+
+            var logs = logger.GetLogs();
+            logs.Count.ShouldBe(1);
+            Console.WriteLine(logs[0].FormattedMessage);
+            logs[0].LogLevel.ShouldBe(LogLevel.Warning);
+            logs[0].FormattedMessage.ShouldStartWith("The Short Code generator will always produce codes with padding");
         }
 
         [Test]
@@ -73,7 +74,7 @@ namespace Stravaig.ShortCode.Tests
             });
             var logger = new TestCaptureLogger<ShortCodeFactory>();
             _ = new ShortCodeFactory(new GuidCodeGenerator(), new Encoder(NamedCharacterSpaces.ReducedAmbiguity), options, logger);
-            logger.Logs.Count.ShouldBe(0);
+            logger.GetLogs().Count.ShouldBe(0);
         }
         
         [Test]
