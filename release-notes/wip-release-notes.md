@@ -4,12 +4,8 @@
 
 Date: ???
 
-### Bugs
-
-### Features
-
 ### Miscellaneous
 
-### Dependencies
+- Add support for .NET 6.0
 
 
