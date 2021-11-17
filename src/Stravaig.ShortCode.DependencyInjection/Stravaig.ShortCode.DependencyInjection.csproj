@@ -7,7 +7,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <TargetFrameworks>netstandard2.0;net5.0</TargetFrameworks>
+        <TargetFrameworks>netstandard2.0;net5.0;net6.0</TargetFrameworks>
         <Title>Stravaig Short Code</Title>
         <Authors>Colin Angus Mackay</Authors>
         <Copyright>©2020-$(StravaigCopyrightYear) Stravaig Projects. See licence for more information.</Copyright>
@@ -31,6 +31,11 @@ Build run details at: $(StravaigWorkflowUrl)
     <ItemGroup Condition=" '$(TargetFramework)' == 'net5.0' ">
         <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
         <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="5.0.0" />
+    </ItemGroup>
+
+    <ItemGroup Condition=" '$(TargetFramework)' == 'net6.0' ">
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="6.0.0" />
     </ItemGroup>
 
     <ItemGroup>
