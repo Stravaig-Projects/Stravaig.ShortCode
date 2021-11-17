@@ -4,12 +4,6 @@
 
 Date: ???
 
-### Bugs
-
-### Features
-
-### Miscellaneous
-
 ### Dependencies
 
 - netstandard2.0 dependencies
