@@ -25,7 +25,7 @@ Build run details at: $(StravaigWorkflowUrl)
     </PropertyGroup>
 
     <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
-      <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.21" />
+      <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.27" />
       <PackageReference Include="Microsoft.Extensions.Options" Version="3.1.21" />
     </ItemGroup>
 
@@ -35,7 +35,7 @@ Build run details at: $(StravaigWorkflowUrl)
     </ItemGroup>
 
     <ItemGroup Condition=" '$(TargetFramework)' == 'net6.0' ">
-        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
         <PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
     </ItemGroup>
 
