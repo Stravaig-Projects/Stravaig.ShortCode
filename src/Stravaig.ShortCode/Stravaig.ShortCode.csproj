@@ -23,6 +23,19 @@ Built on $(StravaigBuildTime).
 Build run details at: $(StravaigWorkflowUrl)
         </Description>
     </PropertyGroup>
+    <ItemGroup>
+        <None Include="stravaig-icon.png" Pack="true" PackagePath="" />
+    </ItemGroup>
+
+    <PropertyGroup>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All"/>
+    </ItemGroup>
 
     <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
       <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.27" />
@@ -37,9 +50,5 @@ Build run details at: $(StravaigWorkflowUrl)
     <ItemGroup Condition=" '$(TargetFramework)' == 'net6.0' ">
         <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
         <PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <None Include="stravaig-icon.png" Pack="true" PackagePath="" />
     </ItemGroup>
 </Project>
