@@ -6,6 +6,8 @@
 docs/build/
 docs/source/_build
 
+.DS_Store
+
 # User-specific files
 *.rsuser
 *.suo

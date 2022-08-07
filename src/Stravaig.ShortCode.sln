@@ -33,6 +33,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "__Documenation", "__Documen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stravaig.ShortCode.Benchmarks", "Stravaig.ShortCode.Benchmarks\Stravaig.ShortCode.Benchmarks.csproj", "{52F20BF5-6251-465E-9EAC-FFAA82DC3931}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "__Repository_Configuration", "__Repository_Configuration", "{61F2B392-DBE5-45C7-8F44-F80AA195A8BF}"
+	ProjectSection(SolutionItems) = preProject
+		..\.gitignore = ..\.gitignore
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
