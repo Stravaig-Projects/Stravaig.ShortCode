@@ -67,7 +67,7 @@ jobs:
           echo "Is Stable: $STRAVAIG_IS_STABLE"
           
       - uses: actions/setup-dotnet@v1
-        name: Setup .NET Core 3.1
+        name: Setup .NET Core 3.1 (LTS)
         with:
           dotnet-version: 3.1.x
 
@@ -76,6 +76,11 @@ jobs:
         with:
           dotnet-version: 5.0.x
 
+      - uses: actions/setup-dotnet@v1
+        name: Setup .NET 6.0 (LTS)
+        with:
+          dotnet-version: 6.0.x
+                            
       - name: Build Solution
         run: dotnet build $STRAVAIG_SOLUTION --configuration Release
        
