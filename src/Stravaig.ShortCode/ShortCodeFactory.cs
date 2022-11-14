@@ -29,7 +29,7 @@ namespace Stravaig.ShortCode
         }
 
         public ShortCodeFactory(IShortCodeGenerator generator, IEncoder encoder, ShortCodeOptions options)
-            : this(generator, encoder, options, new NullLogger<ShortCodeFactory>())
+            : this(generator, encoder, options, NullLogger<ShortCodeFactory>.Instance)
         {
         }
 
