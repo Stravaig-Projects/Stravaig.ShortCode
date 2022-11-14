@@ -8,7 +8,7 @@
     </PropertyGroup>
     
     <PropertyGroup>
-        <TargetFrameworks>netstandard2.0;net5.0;net6.0</TargetFrameworks>
+        <TargetFrameworks>netstandard2.0;net5.0;net6.0;net7.0</TargetFrameworks>
         <Title>Stravaig Short Code</Title>
         <Authors>Colin Angus Mackay</Authors>
         <Copyright>©2020-$(StravaigCopyrightYear) Stravaig Projects. See licence for more information.</Copyright>
@@ -38,8 +38,8 @@ Build run details at: $(StravaigWorkflowUrl)
     </ItemGroup>
 
     <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
-      <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.27" />
-      <PackageReference Include="Microsoft.Extensions.Options" Version="3.1.27" />
+      <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.31" />
+      <PackageReference Include="Microsoft.Extensions.Options" Version="3.1.31" />
     </ItemGroup>
 
     <ItemGroup Condition=" '$(TargetFramework)' == 'net5.0' ">
@@ -48,7 +48,13 @@ Build run details at: $(StravaigWorkflowUrl)
     </ItemGroup>
 
     <ItemGroup Condition=" '$(TargetFramework)' == 'net6.0' ">
-        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.3" />
         <PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
     </ItemGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net7.0' ">
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Options" Version="7.0.0" />
+	</ItemGroup>
+
 </Project>
