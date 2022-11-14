@@ -1,37 +1,39 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-#
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stravaig.ShortCode", "Stravaig.ShortCode\Stravaig.ShortCode.csproj", "{ECD417AB-33E0-41E0-97DE-A4907A0798B1}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33103.184
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stravaig.ShortCode", "Stravaig.ShortCode\Stravaig.ShortCode.csproj", "{ECD417AB-33E0-41E0-97DE-A4907A0798B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stravaig.ShortCode.Tests", "Stravaig.ShortCode.Tests\Stravaig.ShortCode.Tests.csproj", "{2F675E2C-415D-49C0-AAC0-2B90B2C65AE6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stravaig.ShortCode.Tests", "Stravaig.ShortCode.Tests\Stravaig.ShortCode.Tests.csproj", "{2F675E2C-415D-49C0-AAC0-2B90B2C65AE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stravaig.ShortCode.DependencyInjection", "Stravaig.ShortCode.DependencyInjection\Stravaig.ShortCode.DependencyInjection.csproj", "{75FB9F89-FE93-46C1-A93F-D6E284386863}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stravaig.ShortCode.DependencyInjection", "Stravaig.ShortCode.DependencyInjection\Stravaig.ShortCode.DependencyInjection.csproj", "{75FB9F89-FE93-46C1-A93F-D6E284386863}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example", "Example\Example.csproj", "{5E10BEFD-3506-49FA-980A-4A95AD09C904}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example", "Example\Example.csproj", "{5E10BEFD-3506-49FA-980A-4A95AD09C904}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "__Build_and_Deploy", "__Build_and_Deploy", "{20B5F27C-F80B-430E-B8A4-8E1023974064}"
 	ProjectSection(SolutionItems) = preProject
-		..\.github\workflows\build.yml = ..\.github\workflows\build.yml
-		..\list-contributors.ps1 = ..\list-contributors.ps1
-		..\.stravaig\list-contributor-akas.json = ..\.stravaig\list-contributor-akas.json
-		..\Run-Benchmarks.ps1 = ..\Run-Benchmarks.ps1
 		..\build-release-notes.ps1 = ..\build-release-notes.ps1
-		..\version.txt = ..\version.txt
-		..\Set-Version.ps1 = ..\Set-Version.ps1
+		..\.github\workflows\build.yml = ..\.github\workflows\build.yml
+		..\.github\dependabot.yml = ..\.github\dependabot.yml
+		..\.stravaig\list-contributor-akas.json = ..\.stravaig\list-contributor-akas.json
+		..\list-contributors.ps1 = ..\list-contributors.ps1
 		..\Reset-WipReleaseNotes.ps1 = ..\Reset-WipReleaseNotes.ps1
+		..\Run-Benchmarks.ps1 = ..\Run-Benchmarks.ps1
+		..\Set-Version.ps1 = ..\Set-Version.ps1
+		..\version.txt = ..\version.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "__Documenation", "__Documenation", "{9342FEEB-81FD-48BE-BA72-773C679EB0D1}"
 	ProjectSection(SolutionItems) = preProject
-		..\README.md = ..\README.md
-		..\release-notes\wip-release-notes.md = ..\release-notes\wip-release-notes.md
-		..\LICENSE = ..\LICENSE
-		..\release-notes\full-release-notes.md = ..\release-notes\full-release-notes.md
-		..\version.txt = ..\version.txt
 		..\contributors.md = ..\contributors.md
+		..\release-notes\full-release-notes.md = ..\release-notes\full-release-notes.md
+		..\LICENSE = ..\LICENSE
+		..\README.md = ..\README.md
+		..\version.txt = ..\version.txt
+		..\release-notes\wip-release-notes.md = ..\release-notes\wip-release-notes.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stravaig.ShortCode.Benchmarks", "Stravaig.ShortCode.Benchmarks\Stravaig.ShortCode.Benchmarks.csproj", "{52F20BF5-6251-465E-9EAC-FFAA82DC3931}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stravaig.ShortCode.Benchmarks", "Stravaig.ShortCode.Benchmarks\Stravaig.ShortCode.Benchmarks.csproj", "{52F20BF5-6251-465E-9EAC-FFAA82DC3931}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "__Repository_Configuration", "__Repository_Configuration", "{61F2B392-DBE5-45C7-8F44-F80AA195A8BF}"
 	ProjectSection(SolutionItems) = preProject
@@ -64,5 +66,11 @@ Global
 		{52F20BF5-6251-465E-9EAC-FFAA82DC3931}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52F20BF5-6251-465E-9EAC-FFAA82DC3931}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52F20BF5-6251-465E-9EAC-FFAA82DC3931}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {91D22A3D-8A84-43C9-B9D4-66F47711E747}
 	EndGlobalSection
 EndGlobal
