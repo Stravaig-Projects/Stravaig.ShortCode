@@ -45,7 +45,7 @@ jobs:
       - name: List environment vars
         run: env
       - name: Check out code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
@@ -66,22 +66,22 @@ jobs:
           echo "Is Preview: $STRAVAIG_IS_PREVIEW"
           echo "Is Stable: $STRAVAIG_IS_STABLE"
           
-      - uses: actions/setup-dotnet@v1
+      - uses: actions/setup-dotnet@v3
         name: Setup .NET Core 3.1 (LTS)
         with:
           dotnet-version: 3.1.x
 
-      - uses: actions/setup-dotnet@v1
+      - uses: actions/setup-dotnet@v3
         name: Setup .NET 5.0 (STS - Out of support)
         with:
           dotnet-version: 5.0.x
 
-      - uses: actions/setup-dotnet@v1
+      - uses: actions/setup-dotnet@v3
         name: Setup .NET 6.0 (LTS)
         with:
           dotnet-version: 6.0.x
                             
-      - uses: actions/setup-dotnet@v1
+      - uses: actions/setup-dotnet@v3
         name: Setup .NET 7.0 (STS)
         with:
           dotnet-version: 7.0.x
