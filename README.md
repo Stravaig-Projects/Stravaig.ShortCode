@@ -72,7 +72,7 @@ There are some configuration methods you can call during your app's startup:
 
 Starting from v2, there is a configuration methods for specific configurations. 
 
-- `ShortCode.InitYouTubeStyle(bool)`: The short code is configured to generate short codes in the same style as You Tube, i.e. 11 character URL safe base64 without trailing equal signs.
+- `ShortCode.InitYouTubeStyle(bool)`: The short code is configured to generate short codes in the same style as You Tube, i.e. 11 character URL safe base64 without trailing equal signs. The Boolean parameter indicates whether to reset the internal generators back to their defaults too.
 
 ## Setting up Short Codes with Microsoft's Dependency Injection
 
