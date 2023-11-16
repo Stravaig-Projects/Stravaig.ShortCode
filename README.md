@@ -10,7 +10,7 @@ Provides a short code generator that can be used to create small user accessible
     - ![Nuget](https://img.shields.io/nuget/v/Stravaig.ShortCode.DependencyInjection?color=004880&label=nuget%20stable&logo=nuget) [View on NuGet](https://www.nuget.org/packages/Stravaig.ShortCode.DependencyInjection)
     - ![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/Stravaig.ShortCode.DependencyInjection?color=ffffff&label=nuget%20latest&logo=nuget) [View on NuGet](https://www.nuget.org/packages/Stravaig.ShortCode.DependencyInjection)
 
-Supported frameworks: 6.0, 7.0
+Supported frameworks: 6.0, 7.0 and 8.0
 
 For .NET Core 3.1 and .NET 5.0 projects please use v1.x of these packages.
 
