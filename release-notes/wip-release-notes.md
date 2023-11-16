@@ -4,9 +4,9 @@
 
 Date: ???
 
-### Bugs
-
 ### Features
+
+- #129: Add built in settings for You Tube style (11-char base64-like) short codes.
 
 ### Miscellaneous
 
@@ -15,4 +15,4 @@ Date: ???
 
 ### Dependencies
 
-
+- Updated SourceLink to 8.0.0

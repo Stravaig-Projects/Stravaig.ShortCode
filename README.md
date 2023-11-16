@@ -70,6 +70,10 @@ There are some configuration methods you can call during your app's startup:
   - `RandomCodeGenerator`: The code is generated from the `Random` class.
   - `CryptographicallyRandomCodeGenerator`: The code is generated using a cryptographic strength random number generator.
 
+Starting from v2, there is a configuration methods for specific configurations. 
+
+- `ShortCode.InitYouTubeStyle(bool)`: The short code is configured to generate short codes in the same style as You Tube, i.e. 11 character URL safe base64 without trailing equal signs.
+
 ## Setting up Short Codes with Microsoft's Dependency Injection
 
 If web apps this will be in your `Startup` class, somewhere in the `ConfigureServices` method. Otherwise it will go wherever you are adding your dependency to the service collection.
@@ -93,6 +97,17 @@ There are many strategies for generating codes, so you will need to specify that
 The `options` are not required, and if missing a reasonable set of defaults will be used. If a logger is set up, a warning will be generated if the options are set up poorly but won't break.
 
 Once set up, in your application code you need to add `IShortCodeFactory` to any class that needs to generate short codes.
+
+### Configuring preset styles
+
+Starting from Version 2, you can set up preset styles of short code.
+
+e.g.
+```csharp
+  services.AddYouTubeStyleShortCodeGenerator<GuidCodeGenerator>();
+```
+
+This will set up the short code factory to generate codes that are like those used on You Tube, i.e. 11 character, base64 like without trailing equals signs.
 
 ### SequentialCodeGenerator
 
