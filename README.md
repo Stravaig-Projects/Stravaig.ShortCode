@@ -10,9 +10,9 @@ Provides a short code generator that can be used to create small user accessible
     - ![Nuget](https://img.shields.io/nuget/v/Stravaig.ShortCode.DependencyInjection?color=004880&label=nuget%20stable&logo=nuget) [View on NuGet](https://www.nuget.org/packages/Stravaig.ShortCode.DependencyInjection)
     - ![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/Stravaig.ShortCode.DependencyInjection?color=ffffff&label=nuget%20latest&logo=nuget) [View on NuGet](https://www.nuget.org/packages/Stravaig.ShortCode.DependencyInjection)
 
-Supported frameworks: .NET Core 3.1, .NET 5.0, 6.0, 7.0
+Supported frameworks: 6.0, 7.0
 
-NOTE: :warning: Support for .NET 5.0 will be dropped at the next major package version.
+For .NET Core 3.1 and .NET 5.0 projects please use v1.x of these packages.
 
 ## Package overview
 
@@ -68,7 +68,7 @@ There are some configuration methods you can call during your app's startup:
 * `ShortCode.Use<TGenerator>()` sets the random generator to use. `TGenerator` can be:
   - `GuidCodeGenerator`: The code is a hashed form of a GUID
   - `RandomCodeGenerator`: The code is generated from the `Random` class.
-  - `CrytographicallyRandomCodeGenerator`: The code is generated using a cryptographic strength random number generator.
+  - `CryptographicallyRandomCodeGenerator`: The code is generated using a cryptographic strength random number generator.
 
 ## Setting up Short Codes with Microsoft's Dependency Injection
 
@@ -88,7 +88,7 @@ There are many strategies for generating codes, so you will need to specify that
 - `GuidCodeGenerator`: The code is a hashed form of a GUID
 - `RandomCodeGenerator`: The code is generated from the `Random` class.
 - `SequentialCodeGenerator`: The code is a sequential increment from the previous code.
-- `CrytographicallyRandomCodeGenerator`: The code is generated using a cryptographic strength random number generator.
+- `CryptographicallyRandomCodeGenerator`: The code is generated using a cryptographic strength random number generator.
 
 The `options` are not required, and if missing a reasonable set of defaults will be used. If a logger is set up, a warning will be generated if the options are set up poorly but won't break.
 
