@@ -7,6 +7,13 @@ namespace Stravaig.ShortCode.DependencyInjection
 {
     public static class ServiceProviderExtensions
     {
+        public static IServiceCollection AddYouTubeStyleShortCodeGenerator<TGenerator>(
+            this IServiceCollection services)
+            where TGenerator : class, IShortCodeGenerator
+        {
+            return services.AddShortCodeGenerator<TGenerator>(opts => opts.SetYouTubeStyle());
+        }
+
         public static IServiceCollection AddShortCodeGenerator<TGenerator>(
             this IServiceCollection services,
             Action<ShortCodeOptions> options = null)

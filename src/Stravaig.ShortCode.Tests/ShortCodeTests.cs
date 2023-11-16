@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using NUnit.Framework;
 using Shouldly;
@@ -31,6 +32,27 @@ namespace Stravaig.ShortCode.Tests
 
             var randomCode2 = ShortCode.GenerateRandomShortCode();
             randomCode2.Length.ShouldBe(7);
+            randomCode1.ShouldNotBe(randomCode2);
+        }
+
+        [Test]
+        public void YouTubeStyleSettings_HappyPath()
+        {
+            ShortCode.InitYouTubeStyle(resetGenerators: true);
+
+            var sequentialCode1 = ShortCode.GenerateSequentialShortCode();
+            sequentialCode1.Length.ShouldBe(11);
+            sequentialCode1.ShouldBe("AAAAAAAAAAB");
+            
+            var sequentialCode2 = ShortCode.GenerateSequentialShortCode();
+            sequentialCode2.Length.ShouldBe(11);
+            sequentialCode2.ShouldBe("AAAAAAAAAAC");
+
+            var randomCode1 = ShortCode.GenerateRandomShortCode();
+            randomCode1.Length.ShouldBe(11);
+
+            var randomCode2 = ShortCode.GenerateRandomShortCode();
+            randomCode2.Length.ShouldBe(11);
             randomCode1.ShouldNotBe(randomCode2);
         }
         
@@ -101,6 +123,48 @@ namespace Stravaig.ShortCode.Tests
 
             generator.ShouldNotBeNull();
             generator.ShouldBeOfType(typeof(CryptographicallyRandomCodeGenerator));
+        }
+
+        [Test]
+        public void InitYouTubeStyle_ShouldSetupForYouTubeStyle()
+        {
+            // arrange
+            dynamic shortCode = typeof(ShortCode).Jailbreak();
+            var originalRandGenerator = (IShortCodeGenerator)shortCode._randomGenerator;
+            var originalSeqGenerator = (IShortCodeGenerator)shortCode._sequentialCodeGenerator;
+
+            // Act
+            ShortCode.InitYouTubeStyle();
+
+            // Assert
+            ((int)shortCode._defaultLength).ShouldBe(11);
+            ((IShortCodeGenerator)shortCode._randomGenerator).ShouldBe(originalRandGenerator);
+            ((IShortCodeGenerator)shortCode._sequentialCodeGenerator).ShouldBe(originalSeqGenerator);
+
+            dynamic encoder = ((Encoder)shortCode._encoder).Jailbreak();
+            var characterSpace = (string)encoder._characterSpace;
+            characterSpace.ShouldBe(NamedCharacterSpaces.UrlSafeBase64);
+        }
+
+        [Test]
+        public void InitYouTubeStyleWithReset_ShouldSetupForYouTubeStyle()
+        {
+            // arrange
+            dynamic shortCode = typeof(ShortCode).Jailbreak();
+            var originalRandGenerator = (IShortCodeGenerator)shortCode._randomGenerator;
+            var originalSeqGenerator = (IShortCodeGenerator)shortCode._sequentialCodeGenerator;
+
+            // Act
+            ShortCode.InitYouTubeStyle(resetGenerators: true);
+
+            // Assert
+            ((int)shortCode._defaultLength).ShouldBe(11);
+            ((IShortCodeGenerator)shortCode._randomGenerator).ShouldNotBe(originalRandGenerator);
+            ((IShortCodeGenerator)shortCode._sequentialCodeGenerator).ShouldNotBe(originalSeqGenerator);
+
+            dynamic encoder = ((Encoder)shortCode._encoder).Jailbreak();
+            var characterSpace = (string)encoder._characterSpace;
+            characterSpace.ShouldBe(NamedCharacterSpaces.UrlSafeBase64);
         }
 
         private static IEnumerable<int> Lengths()
