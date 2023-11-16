@@ -13,7 +13,8 @@ namespace Example
             var config = BuildConfig();
 
             ServiceCollection services = new ServiceCollection();
-            services.AddShortCodeGenerator<SequentialCodeGenerator>(config);
+            services.AddYouTubeStyleShortCodeGenerator<RandomCodeGenerator>();
+            //services.AddShortCodeGenerator<SequentialCodeGenerator>(config);
 
             ServiceProvider provider = services.BuildServiceProvider();
             var factory = provider.GetRequiredService<IShortCodeFactory>();
