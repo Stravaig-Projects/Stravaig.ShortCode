@@ -106,6 +106,23 @@ namespace Stravaig.ShortCode.Tests
             Console.WriteLine(result);
             result.Length.ShouldBe(5);
         }
+
+        [Test]
+        public void GetNextCode_WithYouTubeOptionsShouldYouTubeStyleCode()
+        {
+            var options = new ShortCodeOptions();
+            options.SetYouTubeStyle();
+
+            var factory = new ShortCodeFactory(
+                new GuidCodeGenerator(),
+                new Encoder(NamedCharacterSpaces.ReducedAmbiguity),
+                options,
+                new NullLogger<ShortCodeFactory>());
+
+            var result = factory.GetNextCode();
+            Console.WriteLine(result);
+            result.Length.ShouldBe(11);
+        }
         
         [TestCase(1)]
         [TestCase(5)]

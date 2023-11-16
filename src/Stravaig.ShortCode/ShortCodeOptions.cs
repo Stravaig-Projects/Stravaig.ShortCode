@@ -57,5 +57,12 @@ namespace Stravaig.ShortCode
         }
 
         public Dictionary<string, object> Generator { get; set; } = new Dictionary<string, object>();
+    
+        public void SetYouTubeStyle()
+        {
+            CharacterSpace = NamedCharacterSpaces.UrlSafeBase64;
+            MaxLength = 11;
+            FixedLength = 11;
+        }
     }
 }

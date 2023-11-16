@@ -12,6 +12,8 @@ namespace Stravaig.ShortCode
         public const string LettersAndDigits = LatinLetters + Digits;
         public const string ReducedAmbiguity = "ABCDEFGHJKLMNPRTUVWXY2346789";
 
+        public const string UrlSafeBase64 = UpperLatinLetters + LowerLatinLetters + Digits + "-_";
+
         public static readonly IReadOnlyDictionary<string, string> SpaceToName = new Dictionary<string, string>
         {
             {Digits, nameof(Digits)},
@@ -21,6 +23,7 @@ namespace Stravaig.ShortCode
             {LatinLetters, nameof(LatinLetters)},
             {LettersAndDigits, nameof(LettersAndDigits)},
             {ReducedAmbiguity, nameof(ReducedAmbiguity)},
+            {UrlSafeBase64, nameof(UrlSafeBase64)},
         };
     }
 }

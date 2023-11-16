@@ -21,6 +21,17 @@ namespace Stravaig.ShortCode
             _sequentialCodeGenerator = new SequentialCodeGenerator();
             _randomGenerator = new CryptographicallyRandomCodeGenerator();
         }
+
+        public static void InitYouTubeStyle(bool resetGenerators = false)
+        {
+            _defaultLength = 11;
+            _encoder = new Encoder(NamedCharacterSpaces.UrlSafeBase64);
+            if (resetGenerators)
+            {
+                _sequentialCodeGenerator = new SequentialCodeGenerator();
+                _randomGenerator = new CryptographicallyRandomCodeGenerator();
+            }
+        }
         
         public static string GenerateSequentialShortCode(int? length = null)
         {
